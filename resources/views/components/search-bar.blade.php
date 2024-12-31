@@ -4,7 +4,7 @@
     <div class="ud-advert-status-wrapper flex-[25%]">
         <x-input-label :for="'search-input'" :value="$text" />
         <!-- <p class="mt-2 mb-2"></i>Status</p> -->
-        <x-select :options="$options" class="mt-2 dark:border-white"/>
+        <x-select wire:model.live="role" :options="$options" class="mt-2 dark:border-white"/>
     </div>
     <div class="ud-advert-keyword-wrapper flex-[50%]">
         {{-- <p class="mt-2 mb-2"></i>Keyword</p> --}}

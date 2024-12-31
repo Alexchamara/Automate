@@ -21,6 +21,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/brands.min.css">
     <!-- jquery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="//unpkg.com/alpinejs" defer></script>
+
     <!-- custom css link -->
     @vite(['resources/css/welcome.css', 
     'resources/css/app.css', 

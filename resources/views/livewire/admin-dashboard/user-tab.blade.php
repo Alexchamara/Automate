@@ -7,11 +7,16 @@
             @foreach ($users as $user)
                 <li wire:key="{{ $user->id }}">
                     <div class="my-4">
+                        {{-- {{ $user->name }} --}}
                         @livewire('admin.user-card', ['user' => $user], key('user-' . $user->id))
                     </div>
                 </li>
             @endforeach
         </ul>
+
+        <div class="pagination">
+            {{ $users->links() }} 
+        </div>
     @else
         <div class="ud-empty-body">
             <i class="fa-solid fa-magnifying-glass text-[#6C757D] text-[80px]"></i>
