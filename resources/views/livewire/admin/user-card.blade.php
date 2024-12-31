@@ -3,8 +3,8 @@
         <div class="user-info-content">
             <div class="flex justify-between items-center">
                 <div class="ud-profile-image-wrapper">
-                    <img src="{{ asset('https://png.pngtree.com/png-clipart/20230927/original/pngtree-man-avatar-image-for-profile-png-image_13001877.png') }}"
-                        alt="profile image" class="user-card-profile-image dark:border dark:border-white">
+                    {{-- <img src="{{ asset('https://png.pngtree.com/png-clipart/20230927/original/pngtree-man-avatar-image-for-profile-png-image_13001877.png') }}"
+                        alt="profile image" class="user-card-profile-image dark:border dark:border-white"> --}}
                     <span class="user-info-title">User ID: {{ $user->id }}</span>
                 </div>
                 <div class="user-card-bottom">

@@ -45,7 +45,7 @@ class PageController extends Controller
                     }
                 case 'admin':
                     $totalUsers = User::where('role', '!=', 'admin')->count();
-                    $user = User::where('role', '!=', 'admin')->first();
+                    // $user = User::where('role', '!=', 'admin')->first();
                     return view(
                         'admin.dashboard',
                         compact(

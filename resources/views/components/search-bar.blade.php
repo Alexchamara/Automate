@@ -10,7 +10,7 @@
         {{-- <p class="mt-2 mb-2"></i>Keyword</p> --}}
         <x-input-label for="role" :value="__('Keyword')"/>
         <div class="flex mt-2">
-            <x-text-input :value="$keyword" type="text" :placeholder="$placeholder" class="ud-advert-keyword-input" class="dark:border-white border-y border-l rounded-r-none"/>
+            <x-text-input wire:model.live="search" :value="$keyword" type="text" :placeholder="$placeholder" class="ud-advert-keyword-input" class="dark:border-white border-y border-l rounded-r-none"/>
             <a href="#"><i class="ud-advert-keyword-search fa-solid fa-magnifying-glass dark:bg-gray-800 dark:text-white dark:border-white"></i></a>
         </div>
     </div>

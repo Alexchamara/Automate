@@ -239,7 +239,7 @@
                     <!-- users -->
                     <div id="users" class="ud-page-wrapper ">
 
-                        @livewire('admin-dashboard.user-tab', ['user' => $user])
+                        @livewire('admin-dashboard.user-tab', ['users' => $users])
                         
                     </div>
 
