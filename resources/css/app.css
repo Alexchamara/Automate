@@ -1,0 +1,354 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "~bootstrap/scss/bootstrap";
+
+/* Dark mode transitions */
+.dark {
+    @apply bg-gray-900 text-white transition-colors duration-200;
+}
+
+:root{
+    --primary: hsla(0, 0%, 59%, 0);
+    --secondary: hsla(0, 0%, 20%, 0.504);
+    --tertiary: hsla(0, 0%, 0%, 0.772);
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+    list-style: none;
+    text-decoration: none;
+}
+
+.star::after {
+    content: '*';
+    padding-left: 1px;
+    color: #dc0000;
+    font-weight: bold;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* padding: 33px 9%; */
+    background: transparent;
+}
+
+.nav {
+    /* background-color: black; */
+    /* background-color: #02092b;
+    background-image: linear-gradient(rgb(8, 18, 85), black); */
+    background-color: #00000000;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.736), rgba(8, 18, 85, 0));
+    z-index: 5;
+}
+
+/* toggle menu */
+header.sticky {
+    background: rgb(53, 25, 29);
+    box-shadow: 0 0 10px #00000099;
+    padding: 5px 100px;
+    background: white;
+}
+
+header.sticky ul li a:hover {
+    border-bottom: 2px solid black;
+}
+
+header.sticky .Ads-button {
+    color: white;
+}
+
+header.sticky .logo {
+    background-color: rgb(53, 25, 29);
+    /* Create the gradient. */
+    background-image: linear-gradient(10deg, rgb(234, 51, 35), transparent);
+
+    /* Set the background size and repeat properties. */
+    background-size: 100%;
+    background-repeat: repeat;
+
+    /* Use the text as a mask for the background. */
+    /* This will show the gradient as a text color rather than element bg. */
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-background-clip: text;
+    -moz-text-fill-color: transparent;
+
+}
+
+.logo {
+    color: white;
+    font-size: 30px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.logo img {
+    height: 70px;
+    position: absolute;
+    /* transform: translate(-50%, -50%); */
+}
+
+.navlist {
+    display: flex;
+}
+
+.navlist a {
+    color: white;
+    margin-left: 60px;
+    font-size: 15px;
+    font-weight: 600;
+    border-bottom: 2px solid transparent;
+    transition: all .55s ease;
+}
+
+.menu-link{
+    /* margin-left: 60px; */
+}
+
+.navlist a:hover {
+    border-bottom: 2px solid white;
+}
+
+#menu-icon {
+    color: black;
+    font-size: 35px;
+    cursor: pointer;
+    display: none;
+}
+
+.icons {
+    display: none;
+}
+
+.Ads-button {
+    color: white;
+    display: unset;
+    font-weight: 600;
+    text-align: center;
+    letter-spacing: 0.1rem;
+    padding: 10px 25px;
+    border-radius: 50px;
+    background-color: red;
+    background-image: linear-gradient(45deg, black, transparent);
+}
+
+.Ads-button:hover {
+    background-color: black;
+    background-image: linear-gradient(45deg, red, transparent);
+}
+
+/* Dropdown Menu */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-toggle {
+    cursor: pointer;
+}
+
+.menu-link-down{
+    margin: 10px 0;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 120%;
+    list-style: none;
+    /* padding: 0 10px; */
+    margin: 0;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    /* z-index: 1000; */
+}
+
+.dropdown-menu li {
+    margin: 5px 0;
+}
+
+.dropdown-menu a {
+    /* margin: 20px; */
+    text-decoration: none;
+    color: white;
+}
+
+.dropdown-menu.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* responsive */
+@media screen and (min-width: 1100px) {
+    header {
+        padding: 33px 6%;
+        transition: .2s;
+    }
+
+}
+
+@media screen and (max-width: 1100px) {
+    header {
+        padding: 33px 3%;
+        transition: .2s;
+    }
+
+    .navlist a {
+        margin-left: 40px;
+    }
+
+    #menu-icon {
+        display: block;
+        color: white;
+    }
+
+    .navlist {
+        position: absolute;
+        padding-top: 100px;
+        top: 0;
+        right: -100%;
+        width: 35%;
+        height: 100vh;
+        background: rgb(76, 14, 24, .9);
+        /* backdrop-filter: blur(5px); */
+        flex-direction: column;
+        padding: 50px 20px;
+        transition: all .90s ease;
+    }
+
+    .navlist a {
+        display: block;
+        margin: 30px 30px;
+        margin-bottom: 1 0px;
+        text-align: center;
+    }
+
+    .navlist.open {
+        right: 0;
+    }
+
+    /* .icons{
+        display: flex;
+        position: absolute;
+        bottom: 25%;
+        right: 14.5%;
+        font-size: 100px;
+    } */
+}
+
+@media screen and (max-width: 850px) {
+
+    .icons {
+        display: flex;
+        position: absolute;
+        bottom: 25%;
+        right: 14.5%;
+        font-size: 100px;
+    }
+}
+
+@media screen and (max-width: 610px) {
+    .icons {
+        display: none;
+    }
+
+    .navlist {
+
+        width: 100%;
+        padding: 50px 20px;
+    }
+}
+
+
+/* Footer */
+footer {
+    background-color: #02092b;
+    background-image: linear-gradient(rgb(8, 18, 85), black);
+    position: relative;
+    clear: both;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-around;
+    padding: 50px 0;
+    margin-top: 7rem;
+}
+
+.footer-logo .sci-icons i {
+    color: white;
+    font-size: 20px;
+}
+
+.sci-icons i:hover {
+    color: red;
+}
+
+.footer-logo {
+    text-align: center;
+    color: white;
+    font-size: 30px;
+    text-transform: uppercase;
+    padding: 10px 0;
+}
+
+.footer-logo .logo {
+    color: white;
+}
+
+.contact-infor {
+    text-align: left;
+}
+
+.contact-infor a:hover {
+    color: red;
+}
+
+.contact-infor li {
+    line-height: 15px;
+}
+
+.contact-infor a {
+    color: white;
+    font-size: 10px;
+    font-weight: 400;
+    margin: 10px 0;
+    text-transform: lowercase;
+}
+
+.footer-links {
+    color: white;
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer-links a {
+    color: white;
+    font-size: 15px;
+    font-weight: 400;
+    margin: 10px 0;
+    display: block;
+}
+
+.footer-links a:hover {
+    color: red;
+}
+
+.footer-link {
+    margin: 0 30px;
+}

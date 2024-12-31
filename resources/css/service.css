@@ -1,0 +1,212 @@
+/* service spage - start */
+
+/* .main-serivce-container {
+    @apply relative top-[13%];
+} */
+
+/* intro */
+
+.service-titel-img::before {
+    position: absolute;
+    top: 0px;
+    right: -368px;
+    height: 100%;
+    width: 47%;
+    border-left-width: 20px;
+    --tw-border-opacity: 1;
+    border-color: rgb(168 46 35 / var(--tw-border-opacity));
+    --tw-bg-opacity: 1;
+    background-color: rgb(53 58 63 / var(--tw-bg-opacity));
+    content: "";
+    transform: skewX(-30deg);
+    transform-origin: top left;
+}
+
+.service-titel-info {
+    position: absolute;
+    top: 30%;
+    left: 95px;
+}
+
+.s-titel1 {
+    font-size: 70px;
+    font-weight: 700;
+    --tw-text-opacity: 1;
+    color: rgb(14 25 106 / var(--tw-text-opacity));
+}
+
+.s-titel2 {
+    font-size: 30px;
+    font-weight: 700;
+    --tw-text-opacity: 1;
+    color: rgb(48 47 47 / var(--tw-text-opacity));
+}
+
+.s-phara {
+    margin-top: 1rem;
+    width: 59%;
+    font-size: 20px;
+    font-weight: 400;
+    --tw-text-opacity: 1;
+    color: rgb(0 0 0 / var(--tw-text-opacity));
+}
+
+.top-t {
+    margin-bottom: 20px;
+}
+
+.img-wrapper {
+    position: absolute;
+    left: 52%;
+    top: 18%;
+    display: block;
+    height: 88%;
+    width: 45%;
+}
+
+.img-wrapper .l-img,
+.m-img {
+    position: absolute;
+    min-height: 90%;
+    width: 100%;
+    background-size: contain;
+    background-position: left;
+    background-repeat: no-repeat;
+}
+
+.img-wrapper .m-img {
+    top: 8%;
+    min-height: 24%;
+}
+
+.l-img {
+    background-image: url('../../public/assets/silver-car.png');
+}
+
+.m-img {
+    background-image: url('../../public/assets/question.png');
+}
+
+/* sub sections */
+
+/* section 01 */
+
+.s-wrap1,
+.s-wrap2,
+.s-wrap3 {
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 100px;
+    border-radius: 9px;
+    --tw-bg-opacity: 1;
+    background-color: rgb(217 217 217 / var(--tw-bg-opacity));
+    padding: 30px;
+}
+
+.s-w-body {
+    display: flex;
+}
+
+.s-w-titel {
+    font-size: 30px;
+    font-weight: 700;
+    --tw-text-opacity: 1;
+    color: rgb(14 25 106 / var(--tw-text-opacity));
+}
+
+.sw-body-para1 {
+    width: 94%;
+    text-align: justify;
+}
+
+.s-w-link {
+    margin-top: 20px;
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+    justify-content: flex-start;
+    row-gap: 20px;
+    -moz-column-gap: 60px;
+    column-gap: 60px;
+    --tw-text-opacity: 1;
+    color: rgb(123 123 123 / var(--tw-text-opacity));
+}
+
+.sw-link1:hover,
+.sw-link2:hover,
+.sw-link3:hover,
+.sw-link4:hover {
+    --tw-text-opacity: 1;
+    color: rgb(14 25 106 / var(--tw-text-opacity));
+}
+
+.sw-imgs1 {
+    width: 131%;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+/* section 02 */
+
+.w-body-para2 {
+    width: 94%;
+    text-align: justify;
+}
+
+.w-imgs2 {
+    margin-left: 2.5rem;
+    height: 230px;
+    width: 62%;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.sw-loan-list {
+    margin-left: 40px;
+}
+
+.sw-loan-list li {
+    margin-top: 10px;
+    list-style-type: disc;
+}
+
+.s-w-body1 {
+    display: flex;
+    align-items: center;
+}
+
+.loan-btn {
+    border-radius: 50px;
+    --tw-bg-opacity: 1;
+    background-color: rgb(220 38 38 / var(--tw-bg-opacity));
+    background-image: linear-gradient(45deg, black, transparent);
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 25px;
+    padding-right: 25px;
+    text-align: center;
+    font-weight: 600;
+    letter-spacing: 0.1rem;
+    --tw-text-opacity: 1;
+    color: rgb(255 255 255 / var(--tw-text-opacity));
+    transition-property: all;
+    transition-duration: 300ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.loan-btn:hover {
+    --tw-bg-opacity: 1;
+    background-color: rgb(0 0 0 / var(--tw-bg-opacity));
+}
+
+/* section 03 */
+
+.sw-imgs3 {
+    margin-left: 2.5rem;
+    height: 350px;
+    width: 165%;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+/* service page - end */
