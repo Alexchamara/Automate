@@ -33,6 +33,12 @@ class PageController extends Controller
         return view('pages.advert-form');
     }
 
+    //Shop Page
+    public function shop()
+    {
+        return view('pages.shop');
+    }
+
     //Dashboard
     public function dashboard()
     {

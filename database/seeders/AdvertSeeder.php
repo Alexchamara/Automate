@@ -1,54 +1,46 @@
 <?php
-
 namespace Database\Seeders;
-
 use App\Models\Advert;
 use Illuminate\Database\Seeder;
+use Faker\Factory as Faker;
 
 class AdvertSeeder extends Seeder
 {
     public function run(): void
     {
-        $adverts = [
-            [
-                'make' => 'Toyota',
-                'model' => 'Corolla',
-                'registrationYear' => 2019,
-                'mileage' => 45000,
-                'condition' => 'Used',
-                'engine' => '1800cc',
-                'color' => 'White',
-                'bodyType' => 'Sedan',
-                'transmission' => 'Automatic',
-                'fuelType' => 'Petrol',
-                'price' => 5500000.00,
-                'description' => 'Well maintained Toyota Corolla for sale',
-                'contactNumber' => '0777123456',
-                'advertEmail' => 'seller1@example.com',
-                'location' => 'Colombo',
-                'images' => json_encode(['car1.jpg', 'car2.jpg']),
-            ],
-            [
-                'make' => 'Honda',
-                'model' => 'Civic',
-                'registrationYear' => 2020,
-                'mileage' => 35000,
-                'condition' => 'Used',
-                'engine' => '1500cc',
-                'color' => 'Black',
-                'bodyType' => 'Sedan',
-                'transmission' => 'Automatic',
-                'fuelType' => 'Petrol',
-                'price' => 6500000.00,
-                'description' => 'Honda Civic in excellent condition',
-                'contactNumber' => '0777234567',
-                'advertEmail' => 'seller2@example.com',
-                'location' => 'Kandy',
-                'images' => json_encode(['civic1.jpg', 'civic2.jpg']),
-            ],
+        $faker = Faker::create();
+        $makes = ['Toyota', 'Honda', 'Nissan', 'BMW', 'Mercedes', 'Audi', 'Volkswagen', 'Ford'];
+        $models = [
+            'Toyota' => ['Corolla', 'Camry', 'RAV4', 'Prius'],
+            'Honda' => ['Civic', 'Accord', 'CR-V', 'HR-V'],
+            'Nissan' => ['X-Trail', 'Qashqai', 'Leaf', 'Juke'],
+            'BMW' => ['3 Series', '5 Series', 'X3', 'X5'],
+            'Mercedes' => ['C-Class', 'E-Class', 'GLC', 'GLE'],
+            'Audi' => ['A3', 'A4', 'Q3', 'Q5'],
+            'Volkswagen' => ['Golf', 'Passat', 'Tiguan', 'T-Roc'],
+            'Ford' => ['Focus', 'Fiesta', 'Kuga', 'Puma']
         ];
 
-        foreach ($adverts as $advert) {
+        for ($i = 0; $i < 25; $i++) {
+            $make = $faker->randomElement($makes);
+            $advert = [
+                'make' => $make,
+                'model' => $faker->randomElement($models[$make]),
+                'registrationYear' => $faker->numberBetween(2015, 2024),
+                'mileage' => $faker->numberBetween(0, 100000),
+                'condition' => $faker->randomElement(['Brand New', 'Used', 'Reconditioned']),
+                'engine' => $faker->randomElement(['1000cc', '1500cc', '2000cc', '2500cc', '3000cc']),
+                'color' => $faker->randomElement(['Black', 'White', 'Silver', 'Blue', 'Red', 'Grey']),
+                'bodyType' => $faker->randomElement(['Sedan', 'SUV', 'Hatchback', 'Coupe', 'Wagon']),
+                'transmission' => $faker->randomElement(['Automatic', 'Manual']),
+                'fuelType' => $faker->randomElement(['Petrol', 'Diesel', 'Hybrid', 'Electric']),
+                'price' => $faker->numberBetween(1000000, 10000000),
+                'description' => $faker->paragraph(),
+                'contactNumber' => $faker->phoneNumber(),
+                'advertEmail' => $faker->email(),
+                'location' => $faker->city(),
+                'images' => json_encode(['car'.($i+1).'.jpg', 'car'.($i+1).'b.jpg']),
+            ];
             Advert::create($advert);
         }
     }

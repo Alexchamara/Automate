@@ -24,6 +24,7 @@ class Listing extends Model
         'isActive' => 'boolean'
     ];
 
+    // Relationships
     public function advert()
     {
         return $this->belongsTo(Advert::class);

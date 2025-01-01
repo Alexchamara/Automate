@@ -1,42 +1,28 @@
 <?php
-
 namespace Database\Seeders;
-
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
-use App\Models\User;
 
 class UserSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
-        // Create 2 admin users
-        User::create([
-            'name' => 'Admin One',
-            'email' => 'admin1@example.com',
-            'password' => Hash::make('password'),
-            'mobile' => '1234567890',
-            'role' => 'admin',
-            'isActive' => true,
-        ]);
+        $users = [
+            ['name' => 'John Doe', 'email' => 'john@example.com', 'password' => Hash::make('password123')],
+            ['name' => 'Jane Smith', 'email' => 'jane@example.com', 'password' => Hash::make('password123')],
+            ['name' => 'Mike Johnson', 'email' => 'mike@example.com', 'password' => Hash::make('password123')],
+            ['name' => 'Sarah Wilson', 'email' => 'sarah@example.com', 'password' => Hash::make('password123')],
+            ['name' => 'David Brown', 'email' => 'david@example.com', 'password' => Hash::make('password123')],
+            ['name' => 'Lisa Davis', 'email' => 'lisa@example.com', 'password' => Hash::make('password123')],
+            ['name' => 'Robert Taylor', 'email' => 'robert@example.com', 'password' => Hash::make('password123')],
+            ['name' => 'Emma Wilson', 'email' => 'emma@example.com', 'password' => Hash::make('password123')],
+            ['name' => 'James Miller', 'email' => 'james@example.com', 'password' => Hash::make('password123')],
+            ['name' => 'Mary Martin', 'email' => 'mary@example.com', 'password' => Hash::make('password123')],
+        ];
 
-        User::create([
-            'name' => 'Admin Two',
-            'email' => 'admin2@example.com',
-            'password' => Hash::make('password'),
-            'mobile' => '0987654321',
-            'role' => 'admin',
-            'isActive' => true,
-        ]);
-
-        // Create 8 regular users
-        User::factory()->count(8)->create([
-            'role' => 'user',
-            'isActive' => true,
-        ]);
+        foreach ($users as $user) {
+            User::create($user);
+        }
     }
 }

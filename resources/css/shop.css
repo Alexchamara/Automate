@@ -1,0 +1,73 @@
+/* Advert listing page - start */
+.listing-main-container {
+    @apply flex mt-[11%] mx-[6%];
+}
+
+.listing-main-wrapper {
+    @apply w-[25%] h-fit py-4 px-4 border-[1px] border-customBlue rounded-md;
+}
+
+.l-filter-categories label,
+.l-filter-categories-title {
+    @apply font-bold text-customBlue;
+}
+
+.l-filter-categories-title {
+    @apply flex justify-between;
+}
+
+.l-filter-input input,
+.l-filter-input select {
+    @apply w-[100%] py-[6px] px-[12px] border border-customBlue rounded-[5px];
+}
+
+.listing-container {
+    @apply w-full;
+}
+
+.listing-value-wrapper {
+    @apply mb-10;
+}
+
+/* Advert listing page - end */
+
+/* listingContainer - start */
+.sub-listing-container {
+    @apply shadow-5xl w-[100%] rounded-lg;
+}
+
+.sub-listing-content-up {
+    @apply flex;
+}
+
+.sub-listing-main-img {
+    @apply h-[300px] w-[300px] bg-center bg-cover bg-no-repeat rounded-tl-lg;
+}
+
+.sub-listing-info {
+    @apply pt-3 pl-6 max-w-[50%];
+}
+
+.sub-listing-title {
+    @apply text-customBlue font-bold text-3xl;
+}
+
+.listing-price-label {
+    @apply pt-3 pl-3 ml-auto pr-4;
+}
+
+.listing-price {
+    @apply text-[#A82E23] font-bold;
+}
+
+.sub-listing-content-bottom {
+    @apply p-2;
+}
+
+.sub-listing-imgs-table {
+    @apply flex w-[80%] h-[10%];
+}
+
+.sub-listing-img {
+    @apply h-[100%] w-[50%] bg-center bg-cover bg-no-repeat mr-1;
+}

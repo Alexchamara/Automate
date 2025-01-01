@@ -32,6 +32,7 @@
     'resources/css/sign.css',
     'resources/css/dashboard.css',
     'resources/css/advert.css',
+    'resources/css/shop.css',
     ])
     @livewireStyles
     
@@ -53,7 +54,7 @@
         <a href="{{ route('welcome') }}" class="logo">automate</a>
 
         <ul class="navlist">
-            <li><a href="#" class="menu-link">Search cars</a></li>
+            <li><a href="{{ route('pages.shop') }}" class="menu-link">Search cars</a></li>
             <li><a href="{{ route('pages.service') }}" class="menu-link">Services</a></li>
             <li><a href="{{ route('pages.about') }}" class="menu-link">About us</a></li>
             <li>
