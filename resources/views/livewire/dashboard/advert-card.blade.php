@@ -1,5 +1,5 @@
 <div>
-    <x-search-bar :text="'Users'" :options="['all' => 'All', 'user' => 'User', 'admin' => 'Admin']" :keyword="request('keyword', '')" :placeholder="'Search users...'" />
+    <x-search-bar :text="'Status'" :options="['all' => 'All', 'pendding' => 'Pending', 'approved' => 'Approved', 'rejected' => 'Rejected', 'active' => 'Active', 'deactive' => 'Deactive']" :keyword="request('keyword', '')" :placeholder="'Search adverts...'" />
 
        <!-- User Cards -->
     @if (auth()->user()->role == 'user')
@@ -17,9 +17,9 @@
             @else
                 <div class="ud-empty-body flex flex-col items-center justify-center gap-4 py-10">
                     <i class="fa-solid fa-magnifying-glass text-[#6C757D] text-[80px]"></i>
-                    <x-text tag="h2" size="3xl" weight="bold" color="[#6C757D]">No adverts found</x-text>
+                    <x-text tag="h2" size="4xl" weight="bold" color="[#6C757D]">No adverts found</x-text>
                     <x-text tag="span" color="[#6C757D]">We couldn't find any records. Try changing search filters</x-text>
-                    <a href="{{ route('ads.create') }}" 
+                    <a href="{{ route('pages.advert-form') }}" 
                        class="border bg-customRed text-white px-7 py-2 rounded-[50px] hover:shadow-4xl transition-all duration-300 ease-in-out"> Create a new advert
                     </a>
                 </div>
@@ -42,7 +42,7 @@
         @else
             <div class="ud-empty-body flex flex-col items-center justify-center gap-4 py-10">
                 <i class="fa-solid fa-magnifying-glass text-[#6C757D] text-[80px]"></i>
-                <x-text tag="h2" size="3xl" weight="bold" color="[#6C757D]">No adverts found</x-text>
+                <x-text tag="h2" size="4xl" weight="bold" color="[#6C757D]">No adverts found</x-text>
                 <x-text tag="span" color="[#6C757D]">We couldn't find any records. Try changing search filters</x-text>
             </div>
         @endif

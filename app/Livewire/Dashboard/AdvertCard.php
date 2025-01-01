@@ -11,6 +11,20 @@ class AdvertCard extends Component
 {
     use WithPagination;
 
+    public $search = '';
+    public $role = 'all';
+
+    // Reset pagination when filters change
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
+
+    public function updatingStatus()
+    {
+        $this->resetPage();
+    }
+
     public function render()
     {
         $query = Listing::with(['advert', 'user']);
@@ -18,6 +32,20 @@ class AdvertCard extends Component
         // If user is logged in and is a regular user, filter listings
         if(Auth::check() && Auth::user()->role === 'user') {
             $query->where('user_id', Auth::id());
+        }
+
+        // Apply status filter
+        if ($this->role !== 'all') {
+            $query->where('status', $this->role);
+        }
+
+        // Apply search filter
+        if (!empty($this->search)) {
+            $query->whereHas('advert', function($q) {
+                $q->where('make', 'like', '%' . $this->search . '%')
+                  ->orWhere('model', 'like', '%' . $this->search . '%')
+                  ->orWhere('location', 'like', '%' . $this->search . '%');
+            });
         }
 
         $listings = $query->orderByRaw("CASE 
