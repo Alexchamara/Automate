@@ -33,6 +33,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/advert-form', [PageController::class, 'advertForm'])->name('pages.advert-form');
     Route::post('/advert-create', [ListingController::class, 'store'])->name('advert.store');
     Route::get('/listings', [ListingController::class, 'index'])->name('listings.index');
+    Route::get('/advert/{listing}/edit', [ListingController::class, 'edit'])->name('advert.edit');
+    Route::put('/advert/{listing}', [ListingController::class, 'update'])->name('advert.update');
 });
 
 require __DIR__.'/auth.php';

@@ -70,59 +70,66 @@ class ListingController extends Controller
 
         return redirect()->route('listings.index')->with('success', 'Advert created successfully.');
     }
-    // public function store(Request $request)
-    // {
-    //     try {
-    //         $validatedData = $request->validate([
-    //             'make' => 'required|string|max:255',
-    //             'model' => 'required|string|max:255',
-    //             'registrationYear' => 'required|integer',
-    //             'mileage' => 'required|integer',
-    //             'condition' => 'required|string|max:255',
-    //             'engine' => 'required|string|max:255',
-    //             'color' => 'required|string|max:255',
-    //             'bodyType' => 'required|string|max:255',
-    //             'transmission' => 'required|string|max:255',
-    //             'fuelType' => 'required|string|max:255',
-    //             'price' => 'required|numeric',
-    //             'description' => 'required|string',
-    //             'contactNumber' => 'required|string|max:255',
-    //             'advertEmail' => 'required|email|max:255',
-    //             'location' => 'required|string|max:255',
-    //             'images' => 'nullable|array',
-    //             'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-    //         ]);
 
-    //         Log::info('Validated Data:', $validatedData);
+    /**
+     * Show the form for editing the specified advert.
+     */
+    public function edit(Listing $listing)
+    {
+        // Check if user owns the listing
+        if (Auth::id() !== $listing->user_id) {
+            abort(403);
+        }
 
-    //         // Handle file uploads
-    //         $imageNames = [];
-    //         if ($request->hasFile('images')) {
-    //             foreach ($request->file('images') as $image) {
-    //                 $imageName = time() . '-' . $image->getClientOriginalName();
-    //                 $image->move(public_path('uploads'), $imageName);
-    //                 $imageNames[] = $imageName;
-    //             }
-    //         }
-    //         $validatedData['images'] = $imageNames;
+        return view('pages.advert-edit', compact('listing'));
+    }
 
-    //         Log::info('Image Names:', $imageNames);
+    /**
+     * Update the specified advert in storage.
+     */
+    public function update(Request $request, Listing $listing)
+    {
+        $validatedData = $request->validate([
+            'bodyType' => 'nullable|string|max:255',
+            'make' => 'nullable|string|max:255',
+            'model' => 'nullable|string|max:255',
+            'registrationYear' => 'nullable|integer',
+            'mileage' => 'nullable|integer',
+            'condition' => 'nullable|string|max:255',
+            'engine' => 'nullable|string|max:255',
+            'color' => 'nullable|string|max:255',
+            'transmission' => 'nullable|string|max:255',
+            'fuelType' => 'nullable|string|max:255',
+            'price' => 'nullable|numeric',
+            'description' => 'nullable|string',
+            'contactNumber' => 'nullable|string',
+            'advertEmail' => 'nullable|email',
+            'location' => 'nullable|string',
+            'images.*' => 'nullable|image|max:2048'
+        ]);
 
-    //         // Save the advert data
-    //         $advert = Advert::create($validatedData);
-    //         Log::info('Advert Created:', $advert->toArray());
+        // Handle image updates
+        if ($request->hasFile('images')) {
+            $imageNames = [];
+            foreach ($request->file('images') as $image) {
+                $imageName = time() . '-' . $image->getClientOriginalName();
+                $image->move(public_path('uploads'), $imageName);
+                $imageNames[] = $imageName;
+            }
+            $validatedData['images'] = json_encode($imageNames);
+        }
 
-    //         // Save the listing data
-    //         $listing = new Listing();
-    //         $listing->user_id = Auth::id();
-    //         $listing->advert_id = $advert->id;
-    //         $listing->save();
-    //         Log::info('Listing Created:', $listing->toArray());
+        // Update advert
+        $listing->advert->update($validatedData);
 
-    //         return redirect()->with('success', 'Advert created successfully.');
-    //     } catch (\Exception $e) {
-    //         Log::error('Error saving advert:', ['error' => $e->getMessage()]);
-    //         return redirect()->back()->with('error', 'There was an error creating the advert.');
-    //     }
-    // }
+        // Reset listing status to pending with proper string quotes
+        $listing->update([
+            'status' => 'pendding', // Match exact string from enum/migration
+            'status_updated_at' => now()
+        ]);
+
+        return redirect()->route('dashboard')
+            ->with('message', 'Advert updated successfully!')
+            ->with('redirect_section', 'myAdverts');
+    }
 }

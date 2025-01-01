@@ -52,12 +52,14 @@
                         @if ($listing->status === 'approved')
                             @if ($listing->isActive)
                                 <x-text tag="label" for="active" size="base" weight="medium" color="white"
-                                    darkColor="white" class="py-1 px-3 rounded-md w-full" style="background-color: green;">
+                                    darkColor="white" class="py-1 px-3 rounded-md w-full"
+                                    style="background-color: green;">
                                     Active Post
                                 </x-text>
                             @else
                                 <x-text tag="label" for="deactive" size="base" weight="medium" color="white"
-                                    darkColor="white" class="py-1 px-3 rounded-md w-full" style="background-color: #A82E23;">
+                                    darkColor="white" class="py-1 px-3 rounded-md w-full"
+                                    style="background-color: #A82E23;">
                                     Deactivated Post
                                 </x-text>
                             @endif
@@ -69,7 +71,8 @@
                             </x-text>
                         @elseif($listing->status === 'rejected')
                             <x-text tag="label" for="rejected" size="base" weight="medium" color="white"
-                                darkColor="white" class="py-1 px-3 rounded-md w-full" style="background-color: #A82E23;">
+                                darkColor="white" class="py-1 px-3 rounded-md w-full"
+                                style="background-color: #A82E23;">
                                 Rejected Post
                             </x-text>
                         @endif
@@ -96,10 +99,14 @@
                             class="fa-solid fa-toggle-on mr-2"></i>{{ isset($isActive) && $isActive ? 'Deactivate' : 'Activate' }}
                         Post
                     </button>
-                    <button type="submit"
+                    {{-- <button type="submit"
                         class="remove-button savedAd-delete border-l border-customGray dark:text-white">
                         <i class="fa-solid fa-pencil mr-2"></i>Update
-                    </button>
+                    </button> --}}
+                    <a href="{{ route('advert.edit', $listing) }}"
+                        class="remove-button savedAd-delete border-l border-customGray dark:text-white">
+                        <i class="fa-solid fa-pencil mr-2"></i>Update
+                    </a>
                     <button type="submit"
                         class="remove-button savedAd-delete border-l border-customGray dark:text-white">
                         <i class="fa-regular fa-trash-can mr-2"></i>Remove
