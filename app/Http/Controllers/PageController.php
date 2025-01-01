@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Listing;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -40,12 +41,16 @@ class PageController extends Controller
             $role = $user->role;
 
             $users = User::all();
+            $listings = Listing::all();
 
             switch ($role) {
                 case 'user':
                     if ($user) {
                         return view(
-                            'user.dashboard'
+                            'user.dashboard',
+                            compact(
+                                'listings'
+                            )
                         );
                     } else {
                         return view('welcome');
@@ -59,6 +64,7 @@ class PageController extends Controller
                             'totalUsers',
                             'user',
                             'users',
+                            'listings'
                         )
                     );
                 default:

@@ -506,99 +506,99 @@
                                                         </div> -->
     <!-- progress bar -->
     <script type="text/javascript">
-        document.addEventListener('DOMContentLoaded', function() {
-            const nextBtn = document.querySelector('.next-btn');
-            const formStep = document.querySelector('.form_1');
-            const form = document.getElementById('multi-step-form');
-            const progressBar = document.querySelector('.progress');
+        // document.addEventListener('DOMContentLoaded', function() {
+        //     const nextBtn = document.querySelector('.next-btn');
+        //     const formStep = document.querySelector('.form_1');
+        //     const form = document.getElementById('multi-step-form');
+        //     const progressBar = document.querySelector('.progress');
 
-            // Initialize form navigation
-            let currentStepIndex = 1;
+        //     // Initialize form navigation
+        //     let currentStepIndex = 1;
 
-            nextBtn.addEventListener('click', function(event) {
-                event.preventDefault();
-                event.stopPropagation();
+        //     nextBtn.addEventListener('click', function(event) {
+        //         event.preventDefault();
+        //         event.stopPropagation();
 
-                // Reset previous error states
-                clearErrors();
+        //         // Reset previous error states
+        //         clearErrors();
 
-                // Validate all required fields
-                const isValid = validateFormStep();
+        //         // Validate all required fields
+        //         const isValid = validateFormStep();
 
-                if (!isValid) {
-                    return false;
-                }
+        //         if (!isValid) {
+        //             return false;
+        //         }
 
-                // If validation passes, proceed to next step
-                goToNextStep();
-            });
+        //         // If validation passes, proceed to next step
+        //         goToNextStep();
+        //     });
 
-            function validateFormStep() {
-                let isValid = true;
-                let firstInvalidElement = null;
+        //     function validateFormStep() {
+        //         let isValid = true;
+        //         let firstInvalidElement = null;
 
-                // Check select elements
-                const selects = formStep.querySelectorAll('select[required]');
-                selects.forEach(select => {
-                    if (select.value === '' || select.value === 'DEF' || select.value === 'Select') {
-                        isValid = false;
-                        showError(select);
-                        if (!firstInvalidElement) firstInvalidElement = select;
-                    }
-                });
+        //         // Check select elements
+        //         const selects = formStep.querySelectorAll('select[required]');
+        //         selects.forEach(select => {
+        //             if (select.value === '' || select.value === 'DEF' || select.value === 'Select') {
+        //                 isValid = false;
+        //                 showError(select);
+        //                 if (!firstInvalidElement) firstInvalidElement = select;
+        //             }
+        //         });
 
-                // Check hidden inputs
-                const hiddenInputs = ['body_type', 'gearbox', 'fuel_type'];
-                hiddenInputs.forEach(inputId => {
-                    const input = document.getElementById(inputId);
-                    if (input && !input.value) {
-                        isValid = false;
-                        showError(input);
-                        if (!firstInvalidElement) firstInvalidElement = input;
-                    }
-                });
+        //         // Check hidden inputs
+        //         const hiddenInputs = ['body_type', 'gearbox', 'fuel_type'];
+        //         hiddenInputs.forEach(inputId => {
+        //             const input = document.getElementById(inputId);
+        //             if (input && !input.value) {
+        //                 isValid = false;
+        //                 showError(input);
+        //                 if (!firstInvalidElement) firstInvalidElement = input;
+        //             }
+        //         });
 
-                // Focus first invalid element
-                if (firstInvalidElement) {
-                    firstInvalidElement.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'center'
-                    });
-                    firstInvalidElement.focus();
-                }
+        //         // Focus first invalid element
+        //         if (firstInvalidElement) {
+        //             firstInvalidElement.scrollIntoView({
+        //                 behavior: 'smooth',
+        //                 block: 'center'
+        //             });
+        //             firstInvalidElement.focus();
+        //         }
 
-                return isValid;
-            }
+        //         return isValid;
+        //     }
 
-            function showError(element) {
-                const errorElement = element.nextElementSibling;
-                if (errorElement && errorElement.classList.contains('text-red-600')) {
-                    errorElement.textContent = 'This field is required.';
-                } else {
-                    const errorMessage = document.createElement('div');
-                    errorMessage.classList.add('text-sm', 'text-red-600', 'dark:text-red-500', 'space-y-1');
-                    errorMessage.textContent = 'This field is required.';
-                    element.parentNode.insertBefore(errorMessage, element.nextSibling);
-                }
-            }
+        //     function showError(element) {
+        //         const errorElement = element.nextElementSibling;
+        //         if (errorElement && errorElement.classList.contains('text-red-600')) {
+        //             errorElement.textContent = 'This field is required.';
+        //         } else {
+        //             const errorMessage = document.createElement('div');
+        //             errorMessage.classList.add('text-sm', 'text-red-600', 'dark:text-red-500', 'space-y-1');
+        //             errorMessage.textContent = 'This field is required.';
+        //             element.parentNode.insertBefore(errorMessage, element.nextSibling);
+        //         }
+        //     }
 
-            function clearErrors() {
-                const errorMessages = formStep.querySelectorAll('.text-red-600');
-                errorMessages.forEach(error => error.textContent = '');
-            }
+        //     function clearErrors() {
+        //         const errorMessages = formStep.querySelectorAll('.text-red-600');
+        //         errorMessages.forEach(error => error.textContent = '');
+        //     }
 
-            function goToNextStep() {
-                const currentStep = document.querySelector('.form-step.active');
-                const nextStep = currentStep.nextElementSibling;
+        //     function goToNextStep() {
+        //         const currentStep = document.querySelector('.form-step.active');
+        //         const nextStep = currentStep.nextElementSibling;
 
-                if (nextStep) {
-                    currentStep.classList.remove('active');
-                    nextStep.classList.add('active');
-                    currentStepIndex++;
-                    progressBar.style.width = `${(currentStepIndex - 1) * 50}%`;
-                }
-            }
-        });
+        //         if (nextStep) {
+        //             currentStep.classList.remove('active');
+        //             nextStep.classList.add('active');
+        //             currentStepIndex++;
+        //             progressBar.style.width = `${(currentStepIndex - 1) * 50}%`;
+        //         }
+        //     }
+        // });
 
         // Payment form
         document.addEventListener('DOMContentLoaded', function() {

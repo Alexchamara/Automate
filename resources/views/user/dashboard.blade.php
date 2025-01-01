@@ -172,32 +172,7 @@
 
                 <!-- My advert page -->
                 <div id="myAdverts" class="ud-page-wrapper hidden">
-                    <div class="ud-advert-page">
-                        <div class="ud-advert-status-wrapper flex-[25%]">
-                            <p class="mt-2 mb-2"></i>Status</p>
-                            <select name="" id="" class="border border-[#00000026] rounded-[5px]">
-                                <option value="all">All</option>
-                                <option value="live">Live</option>
-                                <option value="rejected">Rejected</option>
-                            </select>
-                        </div>
-                        <div class="ud-advert-keyword-wrapper flex-[50%]">
-                            <p class="mt-2 mb-2"></i>Keyword</p>
-                            <div class="flex">
-                                <input type="text" class="ud-advert-keyword-input" placeholder="Search adverts...">
-                                <a href="#"><i
-                                        class="ud-advert-keyword-search fa-solid fa-magnifying-glass"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="ud-empty-body">
-                        <i class="fa-solid fa-magnifying-glass text-[#6C757D] text-[80px]"></i>
-                        <h2 class="text-[#6C757D] text-[40px] font-bold">No adverts found</h2>
-                        <span class="text-[#6C757D]">We couldn't find any records. Try changing search filters</span>
-                        <a href="./createAds.php"
-                            class="border bg-customRed text-white px-7 py-2 rounded-[50px] hover:shadow-4xl transition-all duration-300 ease-in-out">Create
-                            a new advert</a>
-                    </div>
+                    @livewire('dashboard.advert-card')
                 </div>
 
                 <div id="myMessages" class="ud-page-wrapper bg-white p-6 rounded shadow hidden">

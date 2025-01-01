@@ -14,6 +14,14 @@ class Listing extends Model
     protected $fillable = [
         'user_id',
         'advert_id',
+        'status',
+        'status_updated_at',
+        'isActive'
+    ];
+
+    protected $casts = [
+        'status_updated_at' => 'datetime',
+        'isActive' => 'boolean'
     ];
 
     public function advert()

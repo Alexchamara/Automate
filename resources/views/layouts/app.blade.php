@@ -22,6 +22,7 @@
     <!-- jquery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="//unpkg.com/alpinejs" defer></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- custom css link -->
     @vite(['resources/css/welcome.css', 
@@ -33,6 +34,17 @@
     'resources/css/advert.css',
     ])
     @livewireStyles
+    
+    <!-- SweetAlert2 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.min.css">
+    
+    <!-- SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.all.min.js"></script>
+    
+    <!-- Livewire Scripts -->
+    @livewireScripts
+    <x-livewire-alert::scripts />
+    @stack('scripts')
 </head>
 
 <body>

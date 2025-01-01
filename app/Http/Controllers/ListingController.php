@@ -54,7 +54,7 @@ class ListingController extends Controller
                 $imageNames[] = $imageName;
             }
         }
-        $validatedData['images'] = $imageNames;
+        $validatedData['images'] = json_encode($imageNames);
 
         // Save the advert data
         $advert = Advert::create($validatedData);
@@ -63,6 +63,9 @@ class ListingController extends Controller
         $listing = new Listing();
         $listing->user_id = Auth::id();
         $listing->advert_id = $advert->id;
+        $listing->status;
+        $listing->status_updated_at;
+        $listing->isActive;
         $listing->save();
 
         return redirect()->route('listings.index')->with('success', 'Advert created successfully.');

@@ -32,13 +32,13 @@
             <div class="user-dashboard-wrapper">
                 <!-- Navbar for mobile -->
                 <!-- <div class="bg-customBlue text-white p-4 flex justify-between items-center lg:hidden ">
-                                                                                                                                                                                                                <div class="text-lg font-bold">Dashboard</div>
-                                                                                                                                                                                                                <button id="menuToggle" class="text-white focus:outline-none">
-                                                                                                                                                                                                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                                                                                                                                                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-                                                                                                                                                                                                                    </svg>
-                                                                                                                                                                                                                </button>
-                                                                                                                                                                                                            </div> -->
+                                                                                                                                                                                                                            <div class="text-lg font-bold">Dashboard</div>
+                                                                                                                                                                                                                            <button id="menuToggle" class="text-white focus:outline-none">
+                                                                                                                                                                                                                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                                                                                                                                                                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                                                                                                                                                                                                                                </svg>
+                                                                                                                                                                                                                            </button>
+                                                                                                                                                                                                                        </div> -->
 
 
 
@@ -118,7 +118,7 @@
                 <!-- Main Content -->
                 <div class="u-dashboard-content-wrapper">
                     <!-- Dashboard page -->
-                    <div id="dashboard" class="ud-page-wrapper">
+                    <div id="dashboard" class="ud-page-wrapper hidden">
                         <div class="ud-dashboard-page bg-white dark:bg-gray-800 p-6 rounded shadow">
                             <div class="pl-2 ml-3">
                                 <x-text tag="h2" size="2xl" weight="bold" color="customBlue"
@@ -226,14 +226,10 @@
                     </div>
 
                     <!-- listings page -->
-                    <div id="listings" class="ud-page-wrapper hidden">
-                        <x-search-bar :text="'Category'" :options="['all' => 'All', 'vendor' => 'Vendor', 'user' => 'User']" :keyword="request('keyword', '')" :placeholder="'Search adverts...'" />
-                        <!-- <div class="ud-empty-body">
-                                                                                                                                                                                                                        <i class="fa-solid fa-magnifying-glass text-[#6C757D] text-[80px]"></i>
-                                                                                                                                                                                                                        <h2 class="text-[#6C757D] text-[40px] font-bold">No adverts found</h2>
-                                                                                                                                                                                                                        <span class="text-[#6C757D]">We couldn't find any records. Try changing search filters</span>
-                                                                                                                                                                                                                        <a href="./createAds.php" class="border bg-customRed text-white px-7 py-2 rounded-[50px] hover:shadow-4xl transition-all duration-300 ease-in-out">Create a new advert</a>
-                                                                                                                                                                                                                    </div> -->
+                    <div id="listings" class="ud-page-wrapper ">
+
+                        @livewire('dashboard.advert-card')
+
                     </div>
 
                     <!-- users -->
