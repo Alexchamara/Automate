@@ -1,6 +1,5 @@
 <div>
     <x-search-bar :text="'Status'" :options="['all' => 'All', 'pendding' => 'Pending', 'approved' => 'Approved', 'rejected' => 'Rejected', 'active' => 'Active', 'deactive' => 'Deactive']" :keyword="request('keyword', '')" :placeholder="'Search adverts...'" />
-
        <!-- User Cards -->
     @if (auth()->user()->role == 'user')
         <div class="my-4">

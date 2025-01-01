@@ -35,6 +35,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/listings', [ListingController::class, 'index'])->name('listings.index');
     Route::get('/advert/{listing}/edit', [ListingController::class, 'edit'])->name('advert.edit');
     Route::put('/advert/{listing}', [ListingController::class, 'update'])->name('advert.update');
+    Route::delete('/advert/{listing}', [ListingController::class, 'destroy'])->name('advert.destroy');
 });
 
 require __DIR__.'/auth.php';

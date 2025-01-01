@@ -107,10 +107,14 @@
                         class="remove-button savedAd-delete border-l border-customGray dark:text-white">
                         <i class="fa-solid fa-pencil mr-2"></i>Update
                     </a>
-                    <button type="submit"
-                        class="remove-button savedAd-delete border-l border-customGray dark:text-white">
-                        <i class="fa-regular fa-trash-can mr-2"></i>Remove
-                    </button>
+                    <form action="{{ route('advert.destroy', $listing) }}" method="POST" class="inline">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit"
+                            class="remove-button savedAd-delete border-l border-customGray dark:text-white">
+                            <i class="fa-regular fa-trash-can mr-2"></i>Remove
+                        </button>
+                    </form>
                 @endif
             </div>
         </div>

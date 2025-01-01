@@ -132,4 +132,33 @@ class ListingController extends Controller
             ->with('message', 'Advert updated successfully!')
             ->with('redirect_section', 'myAdverts');
     }
+
+    /**
+     * Remove the specified advert from storage.
+     */
+    public function destroy(Listing $listing) {
+        // Check if user owns the listing
+        if (Auth::id() !== $listing->user_id) {
+            abort(403);
+        }
+
+        // Delete the advert images
+        $images = json_decode($listing->advert->images);
+        foreach ($images as $image) {
+            $imagePath = public_path('uploads/' . $image);
+            if (file_exists($imagePath)) {
+                unlink($imagePath);
+            }
+        }
+
+        // Delete the advert
+        $listing->advert->delete();
+
+        // Delete the listing
+        $listing->delete();
+
+        return redirect()->route('dashboard')
+            ->with('message', 'Advert deleted successfully!')
+            ->with('redirect_section', 'myAdverts');
+    }
 }
