@@ -20,9 +20,16 @@ class PageController extends Controller
         return view('pages.about');
     }
 
+    //Service Page
     public function service()
     {
         return view('pages.service');
+    }
+
+    //Advert form Page
+    public function advertForm()
+    {
+        return view('pages.advert-form');
     }
 
     //Dashboard

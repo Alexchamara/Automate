@@ -30,6 +30,7 @@
     'resources/css/service.css', 
     'resources/css/sign.css',
     'resources/css/dashboard.css',
+    'resources/css/advert.css',
     ])
     @livewireStyles
 </head>
@@ -51,7 +52,7 @@
                 @endauth
             </li>
             <div>
-                <li><a href="#" class="Ads-button Ads-mob" id="Ads-mob">Create Ads</a></li>
+                <li><a href="{{ route('pages.advert-form') }}" class="Ads-button Ads-mob" id="Ads-mob">Create Ads</a></li>
                 <div class="icons">
                     <a href="https://www.instagram.com/alex.chamara?igsh=MTF4MmdqeHA5MDNtOA%3D%3D&utm_source=qr"
                         target="_blank"><i class="ri-instagram-line"></i></a>

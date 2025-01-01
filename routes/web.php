@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\ListingController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Dashboard\ChangePassword;
 
@@ -23,10 +24,15 @@ Route::get('/service', [PageController::class, 'service'])->name('pages.service'
 Route::get('/dashboard', [PageController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
 
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    // Advert routes
+    Route::get('/advert-form', [PageController::class, 'advertForm'])->name('pages.advert-form');
+    Route::post('/advert-create', [ListingController::class, 'store'])->name('advert.store');
+    Route::get('/listings', [ListingController::class, 'index'])->name('listings.index');
 });
 
 require __DIR__.'/auth.php';

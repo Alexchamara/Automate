@@ -5,6 +5,7 @@ import '../css/about.css';
 import '../css/service.css';
 import '../css/sign.css';
 import '../css/dashboard.css';
+import '../css/advert.css';
 
 import Alpine from 'alpinejs';
 
