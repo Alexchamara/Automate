@@ -38,6 +38,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/advert/{listing}/edit', [ListingController::class, 'edit'])->name('advert.edit');
     Route::put('/advert/{listing}', [ListingController::class, 'update'])->name('advert.update');
     Route::delete('/advert/{listing}', [ListingController::class, 'destroy'])->name('advert.destroy');
+    Route::post('/listings/{listing}/favorite', [ListingController::class, 'toggleFavorite'])->name('listings.favorite');
 });
 
 require __DIR__.'/auth.php';

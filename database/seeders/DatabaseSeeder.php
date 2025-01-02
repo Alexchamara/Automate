@@ -12,6 +12,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             AdvertSeeder::class,
             ListingSeeder::class,
+            FavoriteSeeder::class,
         ]);
     }
 }

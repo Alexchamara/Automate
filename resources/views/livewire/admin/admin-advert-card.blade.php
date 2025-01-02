@@ -1,5 +1,5 @@
 <div>
-    <section class="sub-listing-container dark:bg-gray-800">
+    <section class="sub-listing-container dark:shadow-none dark:bg-gray-800">
         <div class="sub-listing-content">
             <div class="sub-listing-content-up">
                 <div class="main-img-wrapper">

@@ -1,5 +1,5 @@
 <div>
-    <section class="user-info-container dark:bg-gray-800">
+    <section class="user-info-container dark:shadow-none dark:bg-gray-800">
         <div class="user-info-content">
             <div class="flex justify-between items-center">
                 <div class="ud-profile-image-wrapper">

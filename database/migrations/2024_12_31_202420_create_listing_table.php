@@ -18,6 +18,7 @@ return new class extends Migration
             $table->enum('status', ['pendding', 'approved', 'rejected', 'paid'])->default('pendding');
             $table->timestamp('status_updated_at')->nullable();
             $table->boolean('isActive')->default(true);
+            $table->timestamp('expiration_date')->nullable();
             $table->timestamps();
         });
     }

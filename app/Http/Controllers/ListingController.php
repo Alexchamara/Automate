@@ -7,6 +7,7 @@ use App\Models\Advert;
 use App\Models\Listing;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use App\Models\Favorite;
 
 class ListingController extends Controller
 {
@@ -66,6 +67,7 @@ class ListingController extends Controller
         $listing->status;
         $listing->status_updated_at;
         $listing->isActive;
+        $listing->expiration_date = null;
         $listing->save();
 
         return redirect()->route('listings.index')->with('success', 'Advert created successfully.');
@@ -163,6 +165,9 @@ class ListingController extends Controller
             ->with('redirect_section', 'myAdverts');
     }
 
+    /**
+     * Display the specified advert.
+     */
     public function show(Listing $listing)
     {
         // Check if listing is approved and active
@@ -171,5 +176,32 @@ class ListingController extends Controller
         }
 
         return view('pages.advert-view', compact('listing'));
+    }
+
+    /**
+     * Save adverts.
+     */
+    public function toggleFavorite(Listing $listing)
+    {
+        if (!Auth::check()) {
+            return response()->json(['error' => 'Login required'], 401);
+        }
+
+        $user = Auth::user();
+        $favorite = $user->favorites()->where('listing_id', $listing->id)->first();
+
+        if ($favorite) {
+            $favorite->delete();
+            return response()->json(['status' => 'removed']);
+        }
+
+        // Create new favorite using proper relationship
+        $favorite = new Favorite([
+            'user_id' => $user->id,
+            'listing_id' => $listing->id
+        ]);
+        $user->favorites()->save($favorite);
+
+        return response()->json(['status' => 'added']);
     }
 }

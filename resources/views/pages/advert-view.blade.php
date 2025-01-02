@@ -4,7 +4,8 @@
         <div class="flex flex-col md:flex-row justify-between">
 
             <div class="text-base text-customBlue mb-4">
-                <a href="{{ url()->previous() }}" class="text-customBlue">
+                <a href="{{ url()->previous() }}" class="text-customBlue"
+                    onclick="event.preventDefault(); handleBackNavigation('{{ url()->previous() }}', '{{ Route::currentRouteName() }}')">
                     <i class="fa-solid fa-arrow-left text-customBlue mr-2 dark:text-white"></i>
                     <x-text size="base" color="customBlue">Back to search</x-text>
                 </a>
@@ -12,14 +13,63 @@
 
             <!-- Sign out btn -->
             <div class="flex justify-end gap-8 text-sm mb-4">
-                <a href="#" class="text-customBlue">
-                    <i class="fa-regular fa-heart mr-2 dark:text-white"></i>
-                    <x-text size="sm" color="customBlue">Save</x-text>
+                <a href="#" class="text-customBlue favorite-btn" data-listing="{{ $listing->id }}"
+                    onclick="event.preventDefault(); toggleFavorite(this)">
+                    <i
+                        class="fa-heart mr-2 dark:text-white {{ Auth::check() &&Auth::user()->favorites()->where('listing_id', $listing->id)->exists()? 'fas': 'far' }}"></i>
+                    <x-text size="sm" color="customBlue">
+                        {{ Auth::check() &&Auth::user()->favorites()->where('listing_id', $listing->id)->exists()? 'Saved': 'Save' }}
+                    </x-text>
                 </a>
-                <a href="#" class="text-customBlue">
-                    <i class="fa-solid fa-share-nodes mr-2 dark:text-white"></i>
-                    <x-text size="sm" color="customBlue">Share</x-text>
-                </a>
+
+                <div class="relative" x-data="{ open: false }">
+                    <a href="#" class="text-customBlue transition-colors duration-200 hover:text-customBlue/80"
+                        @click.prevent="open = !open" @mouseover="open = true"
+                        @mouseleave="setTimeout(() => { if (!$el.contains(document.activeElement)) open = false }, 200)">
+                        <i class="fa-solid fa-share-nodes mr-2 dark:text-white"></i>
+                        <x-text size="sm" color="customBlue">Share</x-text>
+                    </a>
+
+                    <!-- Share options dropdown -->
+                    <div x-show="open" x-transition:enter="transition ease-out duration-200"
+                        x-transition:enter-start="transform opacity-0 scale-95"
+                        x-transition:enter-end="transform opacity-100 scale-100"
+                        x-transition:leave="transition ease-in duration-75"
+                        x-transition:leave-start="transform opacity-100 scale-100"
+                        x-transition:leave-end="transform opacity-0 scale-95" @mouseover="open = true"
+                        @mouseleave="open = false"
+                        class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-50 dark:bg-gray-800">
+                        <div class="py-1">
+                            <!-- Facebook -->
+                            <a href="#"
+                                onclick="shareOn('facebook', '{{ route('listings.show', $listing->id) }}', '{{ $listing->advert->make }} {{ $listing->advert->model }}')"
+                                class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700">
+                                <i class="fab fa-facebook-f w-5 mr-2"></i> Facebook
+                            </a>
+
+                            <!-- Twitter/X -->
+                            <a href="#"
+                                onclick="shareOn('twitter', '{{ route('listings.show', $listing->id) }}', '{{ $listing->advert->make }} {{ $listing->advert->model }}')"
+                                class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700">
+                                <i class="fab fa-x-twitter w-5 mr-2"></i> Twitter
+                            </a>
+
+                            <!-- WhatsApp -->
+                            <a href="#"
+                                onclick="shareOn('whatsapp', '{{ route('listings.show', $listing->id) }}', '{{ $listing->advert->make }} {{ $listing->advert->model }}')"
+                                class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700">
+                                <i class="fab fa-whatsapp w-5 mr-2"></i> WhatsApp
+                            </a>
+
+                            <!-- Copy Link -->
+                            <button onclick="copyToClipboard('{{ route('listings.show', $listing->id) }}')"
+                                class="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700">
+                                <i class="fas fa-link w-5 mr-2"></i> Copy Link
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
         <div class="ad-top-preview flex flex-col md:flex-row gap-4 items-start  bg-center bg-cover bg-no-repeat">
@@ -96,7 +146,8 @@
                                         class="w-full h-auto">
                                 @endforeach
                             @else
-                                <img src="{{ asset('assets/default.jpg.webp') }}" alt="Default Image" class="w-full h-auto">
+                                <img src="{{ asset('assets/default.jpg.webp') }}" alt="Default Image"
+                                    class="w-full h-auto">
                             @endif
                         </div>
                     </div>
@@ -175,13 +226,13 @@
                             <div class="flex items-center basis-1/2 pb-4">
                                 <i class="fa-solid fa-mobile-screen dark:text-white"></i>
                                 @if (Auth::check())
-                                    <x-text tag="a" href="tel:{{ $listing->advert->contactNumber }}" size="base"
-                                        color="customBlue" class="ml-2">
+                                    <x-text tag="a" href="tel:{{ $listing->advert->contactNumber }}"
+                                        size="base" color="customBlue" class="ml-2">
                                         {{ $listing->advert->contactNumber }}
                                     </x-text>
                                 @else
-                                    <x-text tag="a" href="tel:{{ $listing->advert->contactNumber }}" size="base"
-                                        color="customBlue" class="ml-2">
+                                    <x-text tag="a" href="tel:{{ $listing->advert->contactNumber }}"
+                                        size="base" color="customBlue" class="ml-2">
                                         {{ substr($listing->advert->contactNumber, 0, 3) }}*******
                                         <br>
                                     </x-text>
@@ -190,8 +241,8 @@
                             <div class="flex items-center pb-4">
                                 <i class="fa-regular fa-envelope dark:text-white"></i>
                                 @auth
-                                    <x-text tag="a" href="mailto:{{ $listing->advert->advertEmail }}"
-                                        size="base" color="customBlue" class="ml-2">
+                                    <x-text tag="a" href="mailto:{{ $listing->advert->advertEmail }}" size="base"
+                                        color="customBlue" class="ml-2">
                                         {{ $listing->advert->advertEmail }}
                                     </x-text>
                                 @else
@@ -208,8 +259,8 @@
                             <div class="flex items-center basis-1/2 pb-4">
                                 <i class="fa-regular fa-comment dark:text-white"></i>
                                 @auth
-                                    <x-text tag="a" href="mailto:{{ $listing->advert->advertEmail }}"
-                                        size="base" color="customBlue" class="ml-2">
+                                    <x-text tag="a" href="mailto:{{ $listing->advert->advertEmail }}" size="base"
+                                        color="customBlue" class="ml-2">
                                         Send message
                                     </x-text>
                                 @else
@@ -222,8 +273,8 @@
                             <div class="flex items-center pb-4">
                                 <i class="fa-regular fa-message dark:text-white"></i>
                                 @auth
-                                    <x-text tag="a" href="mailto:{{ $listing->advert->advertEmail }}"
-                                        size="base" color="customBlue" class="ml-2">
+                                    <x-text tag="a" href="mailto:{{ $listing->advert->advertEmail }}" size="base"
+                                        color="customBlue" class="ml-2">
                                         Chat now
                                     </x-text>
                                 @else
@@ -244,11 +295,11 @@
                             <div class="flex items-center pb-4">
                                 <i class="fa-solid fa-route dark:text-white"></i>
                                 @auth
-                                    <span class="ml-2 text-base flex items-center"
+                                    <x-text tag="a" size="base" color="customBlue" class="ml-2 cursor-pointer"
                                         onclick="getDirections(event, '{{ $listing->advert->location }}')">
                                         <span id="directionText">Get Directions</span>
                                         <i id="directionLoader" class="fa-solid fa-spinner animate-spin ml-2 hidden"></i>
-                                    </span>
+                                    </x-text>
                                 @else
                                     <x-text tag="span" size="base" color="customBlue" class="ml-2"
                                         onclick="promptLogin()">
@@ -396,7 +447,6 @@
             }
         }
 
-
         //imgae slider in product page
         let currentSlideIndex = 0;
         const slides = document.querySelector('.slides');
@@ -448,6 +498,83 @@
         // Prompt login
         function promptLogin() {
             alert('Please log in to perform this action.');
+        }
+
+        // Toggle favorite
+        function toggleFavorite(element) {
+            if (!{{ Auth::check() ? 'true' : 'false' }}) {
+                window.location.href = '{{ route('login') }}';
+                return;
+            }
+
+            const listingId = element.dataset.listing;
+
+            fetch(`/listings/${listingId}/favorite`, {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                        'Accept': 'application/json'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    const icon = element.querySelector('i');
+                    const text = element.querySelector('x-text');
+
+                    if (data.status === 'added') {
+                        icon.classList.remove('far');
+                        icon.classList.add('fas');
+                        text.textContent = 'Saved';
+                    } else {
+                        icon.classList.remove('fas');
+                        icon.classList.add('far');
+                        text.textContent = 'Save';
+                    }
+                });
+        }
+
+        // Share function
+        function shareOn(platform, url, title) {
+            const shareUrls = {
+                facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
+                twitter: `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}`,
+                whatsapp: `https://api.whatsapp.com/send?text=${encodeURIComponent(title + ' ' + url)}`
+            };
+
+            const shareUrl = shareUrls[platform];
+            if (shareUrl) {
+                window.open(shareUrl, '_blank', 'width=600,height=400');
+            }
+        }
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                // Show success message
+                const notification = document.createElement('div');
+                notification.textContent = 'Link copied to clipboard!';
+                notification.className =
+                    'fixed bottom-4 right-4 bg-green-500 text-white px-4 py-2 rounded-md shadow-lg';
+                document.body.appendChild(notification);
+
+                // Remove notification after 2 seconds
+                setTimeout(() => {
+                    notification.remove();
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy text: ', err);
+            });
+        }
+
+        // Handle back navigation
+        function handleBackNavigation(previousUrl, currentRoute) {
+            // Check if coming from dashboard
+            if (previousUrl.includes('dashboard')) {
+                window.location.href = previousUrl;
+                // Set session to open saved adverts tab
+                localStorage.setItem('openTab', 'savedAdverts');
+            } else {
+                window.location.href = previousUrl;
+            }
         }
     </script>
 @endsection

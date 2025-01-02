@@ -48,6 +48,10 @@ class PageController extends Controller
 
             $users = User::all();
             $listings = Listing::all();
+            $savedAdverts = Auth::user()->favorites()
+                ->with(['listing.advert'])
+                ->latest()
+                ->get();
 
             switch ($role) {
                 case 'user':
@@ -55,7 +59,8 @@ class PageController extends Controller
                         return view(
                             'user.dashboard',
                             compact(
-                                'listings'
+                                'listings',
+                                'savedAdverts',
                             )
                         );
                     } else {

@@ -164,8 +164,8 @@
                                 Make more money by selling your car with Automate 3 easy steps!
                             </x-text>
                         </div>
-                        <x-primary-button onclick="loadPage('personalDetails')">
-                            <a href="#">Create your advert</a>
+                        <x-primary-button>
+                            <a href="{{ route('pages.advert-form') }}">Create your advert</a>
                         </x-primary-button>
                     </div>
                 </div>
@@ -182,38 +182,7 @@
 
                 <!-- Saved ad page -->
                 <div id="savedAdverts" class="ud-page-wrapper hidden">
-                    <div class="ud-saved-advert-page">
-                        <div class="ud-advert-keyword-wrapper flex-[50%]">
-                            <p class="mt-2 mb-2"></i>Keyword</p>
-                            <div class="flex">
-                                <input type="text" class="ud-advert-keyword-input" placeholder="Search adverts...">
-                                <a href="#"><i
-                                        class="ud-advert-keyword-search fa-solid fa-magnifying-glass"></i></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <?php
-                // Assuming $savedAds is an array containing saved ads
-                $savedAds = [1, 2]; // Replace this with actual data fetching logic
-
-                if (count($savedAds) > 0): ?>
-                    <div class="ud-savedAd-container">
-                        <ul>
-                        </ul>
-                    </div>
-                    <?php else: ?>
-                    <!-- empty body -->
-                    <div class="ud-empty-body">
-                        <i class="fa-solid fa-magnifying-glass text-[#6C757D] text-[80px]"></i>
-                        <h2 class="text-[#6C757D] text-[40px] font-bold">No saved adverts found</h2>
-                        <span class="text-[#6C757D]">We couldn't find any saved adverts. Try changing search
-                            filters.</span>
-                        <a href="./advertListing.php"
-                            class="border bg-customRed text-white px-7 py-2 rounded-[50px] hover:shadow-4xl transition-all duration-300 ease-in-out">Show
-                            latest adverts</a>
-                    </div>
-                    <?php endif; ?>
+                    @livewire('user.saved-advert', ['adverts' => $savedAdverts])
                 </div>
 
                 <div id="myOrders" class="ud-page-wrapper bg-white p-6 rounded shadow hidden">

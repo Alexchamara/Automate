@@ -24,7 +24,9 @@ class AdminAdvertCard extends Component
     {
         $this->listing->update([
             'status' => 'approved',
-            'status_updated_at' => now()
+            'status_updated_at' => now(),
+            'isActive' => true,
+            'expiration_date' => now()->addDays(3)
         ]);
         $this->status = 'approved';
 
@@ -54,7 +56,8 @@ class AdminAdvertCard extends Component
         session()->flash('message', 'Listing ' . ($this->isActive ? 'activated' : 'deactivated') . ' successfully.');
     }
 
-    public function render(){
+    public function render()
+    {
         return view('livewire.admin.admin-advert-card');
     }
 }

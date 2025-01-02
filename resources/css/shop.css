@@ -32,7 +32,7 @@
 /* Advert listing page - end */
 
 /* listingContainer - start */
-.sub-listing-container {
+.sub-listing-container, .user-info-container {
     @apply shadow-5xl w-[100%] rounded-lg;
 }
 
