@@ -126,7 +126,7 @@
         </div>
         <div class="savedAd-buttons">
             <div class="border-r border-customGray">
-                <a href="#" class="savedAd-view ">
+                <a href="{{ route('listings.show', $listing) }}" class="savedAd-view ">
                     <button class="savedAd-view dark:text-white"><i class="fa-regular fa-eye mr-2"></i>View
                         advert</button></a>
             </div>

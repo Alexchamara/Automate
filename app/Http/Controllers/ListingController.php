@@ -136,7 +136,8 @@ class ListingController extends Controller
     /**
      * Remove the specified advert from storage.
      */
-    public function destroy(Listing $listing) {
+    public function destroy(Listing $listing)
+    {
         // Check if user owns the listing
         if (Auth::id() !== $listing->user_id) {
             abort(403);
@@ -160,5 +161,15 @@ class ListingController extends Controller
         return redirect()->route('dashboard')
             ->with('message', 'Advert deleted successfully!')
             ->with('redirect_section', 'myAdverts');
+    }
+
+    public function show(Listing $listing)
+    {
+        // Check if listing is approved and active
+        if ($listing->status !== 'approved' || !$listing->isActive) {
+            abort(404);
+        }
+
+        return view('pages.advert-view', compact('listing'));
     }
 }

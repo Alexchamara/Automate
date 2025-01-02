@@ -4,53 +4,79 @@
             <div class="main-img-wrapper">
                 @if (isset($listing->advert->images) && !empty($listing->advert->images))
                     @php
-                        $images = is_array($listing->advert->images) ? $listing->advert->images : json_decode($listing->advert->images);
+                        $images = is_array($listing->advert->images)
+                            ? $listing->advert->images
+                            : json_decode($listing->advert->images);
                     @endphp
                     @if (is_array($images) && count($images) > 0)
-                        <img src="{{ asset('uploads/' . $images[0]) }}" alt="{{ $listing->advert->make }}" class="sub-listing-main-img">
+                        <img src="{{ asset('uploads/' . $images[0]) }}" alt="{{ $listing->advert->make }}"
+                            class="sub-listing-main-img">
                     @endif
                 @else
                     <img src="{{ asset('assets/default.jpg.webp') }}" alt="Default Image" class="sub-listing-main-img">
                 @endif
             </div>
             <div class="sub-listing-info">
-                <x-text tag="h2" size="xl" weight="bold" color="gray-800" darkColor="gray-200" class="sub-listing-title">
+                <x-text tag="h2" size="xl" weight="bold" color="gray-800" darkColor="gray-200"
+                    class="sub-listing-title">
                     {{ $listing->advert->make }} {{ $listing->advert->model }}
                 </x-text>
                 <div class="sub-listing-features-container">
                     <div class="sub-listing-features">
-                        <x-text tag="span" size="base" color="gray-600" darkColor="gray-300" class="sub-listing-feature-value">
+                        <x-text tag="span" size="base" color="gray-600" darkColor="gray-300"
+                            class="sub-listing-feature-value">
                             {{ $listing->advert->condition }}
                         </x-text>
-                        <x-text tag="span" size="base" color="gray-600" darkColor="gray-300" class="sub-listing-feature-value">
+                        <x-text tag="span" size="base" color="gray-600" darkColor="gray-300"
+                            class="sub-listing-feature-value">
                             {{ $listing->advert->registrationYear }}
                         </x-text>
-                        <x-text tag="span" size="base" color="gray-600" darkColor="gray-300" class="sub-listing-feature-value">
+                        <x-text tag="span" size="base" color="gray-600" darkColor="gray-300"
+                            class="sub-listing-feature-value">
                             {{ $listing->advert->mileage }} km
                         </x-text>
-                        <x-text tag="span" size="base" color="gray-600" darkColor="gray-300" class="sub-listing-feature-value">
+                        <x-text tag="span" size="base" color="gray-600" darkColor="gray-300"
+                            class="sub-listing-feature-value">
                             {{ $listing->advert->bodyType }}
                         </x-text>
-                        <x-text tag="span" size="base" color="gray-600" darkColor="gray-300" class="sub-listing-feature-value">
+                        <x-text tag="span" size="base" color="gray-600" darkColor="gray-300"
+                            class="sub-listing-feature-value">
                             {{ $listing->advert->fuelType }}
                         </x-text>
-                        <x-text tag="span" size="base" color="gray-600" darkColor="gray-300" class="sub-listing-feature-value">
+                        <x-text tag="span" size="base" color="gray-600" darkColor="gray-300"
+                            class="sub-listing-feature-value">
                             {{ $listing->advert->color }}
                         </x-text>
-                        <x-text tag="span" size="base" color="gray-600" darkColor="gray-300" class="sub-listing-feature-value">
+                        <x-text tag="span" size="base" color="gray-600" darkColor="gray-300"
+                            class="sub-listing-feature-value">
                             {{ $listing->advert->engine }}
                         </x-text>
                     </div>
-                    <div class="sub-listing-location">
-                        <x-text tag="span" size="base" color="gray-600" darkColor="gray-300">
-                            <i class="fa-solid fa-map-pin mr-1"></i>
-                            {{ $listing->advert->location }}
-                        </x-text>
+                    <div class="flex items-center">
+                        <div class="sub-listing-location">
+                            <x-text tag="span" size="base" color="gray-600" darkColor="gray-300">
+                                <i class="fa-solid fa-map-pin mr-1 text-red-500"></i>
+                                {{ $listing->advert->location }}
+                            </x-text>
+                        </div>
+                        <div class="sub-listing-location ml-5">
+                            <x-text tag="span" size="base" color="gray-600" darkColor="gray-300">
+                                <i class="fa-regular fa-clock mr-1 text-blue-400"></i>
+                                {{ $listing->created_at->diffForHumans() }}
+                            </x-text>
+                        </div>
+                        <div class="sub-listing-location ml-5">
+                            <x-text tag="span" size="base" color="gray-600" darkColor="gray-300">
+                                <i class="fa-regular fa-circle-check w-5 h-5 text-green-500"></i>
+                                Verified
+                            </x-text>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="listing-price-label">
-                <x-text tag="span" size="lg" weight="bold" color="gray-800" darkColor="gray-200" class="listing-price">
+                <x-text tag="span" size="lg" weight="bold" color="gray-800" darkColor="gray-200"
+                    class="listing-price">
                     Rs.{{ $listing->advert->price }}/=
                 </x-text>
             </div>
@@ -84,7 +110,8 @@
         </div>
     </div>
 
-    <x-text tag="a" href="#" size="base" color="customBlue" darkColor="blue-400" class="dark:text-white py-[8px] px-[10px] flex justify-end w-full items-center">
+    <x-text tag="a" href="{{ route('listings.show', $listing) }}" size="base" color="customBlue"
+        darkColor="blue-400" class="dark:text-white py-[8px] px-[10px] flex justify-end w-full items-center">
         <i class="fa-regular fa-eye mr-1"></i>View advert
     </x-text>
 </section>

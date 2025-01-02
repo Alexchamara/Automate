@@ -10,6 +10,7 @@ Route::get('/', [PageController::class, 'index'])->name('welcome');
 Route::get('/about', [PageController::class, 'about'])->name('pages.about');
 Route::get('/service', [PageController::class, 'service'])->name('pages.service');
 Route::get('/shop', [PageController::class, 'shop'])->name('pages.shop');
+Route::get('/listings/{listing}', [ListingController::class, 'show'])->name('listings.show');
 
 // Route::middleware(['auth'])->group(function () {
 //     // ...existing code...

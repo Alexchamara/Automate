@@ -18,7 +18,7 @@
                     <hr class="my-3 border-gray-300">
                     <li class="l-filter-categories">
                         <x-text tag="label" for="make" size="base" color="gray-700"
-                            darkColor="gray-300">Make</x-text>
+                            darkColor="gray-300">Location</x-text>
                         <div class="l-filter-input">
                             <x-text-input type="text" wire:model.live="location" id="location"
                                 placeholder="Location..." />
@@ -234,8 +234,10 @@
                         </li>
                     @endforeach
                 </ul>
-
-                {{ $listings->links() }}
+                
+                <div class="pl-6">
+                    {{ $listings->links() }}
+                </div>
             @endif
         </section>
     </main>
