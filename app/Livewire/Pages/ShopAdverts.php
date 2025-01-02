@@ -6,7 +6,7 @@ use App\Models\Listing;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class ShopAdverts extends Component 
+class ShopAdverts extends Component
 {
     use WithPagination;
 
@@ -27,7 +27,7 @@ class ShopAdverts extends Component
     public function resetFilters()
     {
         $this->resetPage();
-        
+
         $this->reset([
             'location',
             'model',
@@ -42,7 +42,7 @@ class ShopAdverts extends Component
             'startPrice',
             'endPrice'
         ]);
-        
+
         session()->flash('message', 'All cleared');
     }
 
@@ -52,40 +52,49 @@ class ShopAdverts extends Component
             ->where('status', 'approved')
             ->where('isActive', true);
 
-        if($this->location || $this->model || $this->registrationYear || 
-           $this->condition || $this->engine || $this->fuelType || 
-           $this->transmission || $this->color || $this->make || $this->makeSearch
-           || $this->startPrice || $this->endPrice) {
-            
-            $query->whereHas('advert', function($query) {
-                if($this->location) {
+        if ($this->makeSearch) {
+            $query->whereHas('advert', function ($query) {
+                $query->where('make', 'like', '%' . $this->makeSearch . '%')
+                    ->orWhere('model', 'like', '%' . $this->makeSearch . '%');
+            });
+        }
+
+        if (
+            $this->location || $this->model || $this->registrationYear ||
+            $this->condition || $this->engine || $this->fuelType ||
+            $this->transmission || $this->color || $this->make || $this->makeSearch
+            || $this->startPrice || $this->endPrice
+        ) {
+
+            $query->whereHas('advert', function ($query) {
+                if ($this->location) {
                     $query->where('location', 'like', '%' . $this->location . '%');
                 }
-                if($this->model && $this->model !== 'DEF') {
+                if ($this->model && $this->model !== 'DEF') {
                     $query->where('model', $this->model);
                 }
-                if($this->registrationYear) {
+                if ($this->registrationYear) {
                     $query->where('registrationYear', $this->registrationYear);
                 }
-                if($this->condition && $this->condition !== 'DEF') {
+                if ($this->condition && $this->condition !== 'DEF') {
                     $query->where('condition', $this->condition);
                 }
-                if($this->engine && $this->engine !== 'DEF') {
+                if ($this->engine && $this->engine !== 'DEF') {
                     $query->where('engine', $this->engine);
                 }
-                if($this->fuelType && $this->fuelType !== 'DEF') {
+                if ($this->fuelType && $this->fuelType !== 'DEF') {
                     $query->where('fuelType', $this->fuelType);
                 }
-                if($this->transmission && $this->transmission !== 'DEF') {
+                if ($this->transmission && $this->transmission !== 'DEF') {
                     $query->where('transmission', $this->transmission);
                 }
-                if($this->color && $this->color !== 'DEF') {
+                if ($this->color && $this->color !== 'DEF') {
                     $query->where('color', $this->color);
                 }
-                if($this->make && $this->make !== 'DEF') {
+                if ($this->make && $this->make !== 'DEF') {
                     $query->where('make', $this->make);
                 }
-                if($this->makeSearch) {
+                if ($this->makeSearch) {
                     $query->where('make', 'like', '%' . $this->makeSearch . '%');
                 }
                 if ($this->startPrice !== '' && $this->endPrice !== '') {
@@ -101,7 +110,8 @@ class ShopAdverts extends Component
         $listings = $query->paginate(12);
 
         return view('livewire.pages.shop-adverts', [
-            'listings' => $listings
+            'listings' => $listings,
+            'searchTerm' => $this->makeSearch
         ]);
     }
 }

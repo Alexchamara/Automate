@@ -309,12 +309,10 @@
                 <x-text tag="span" size="base" color="black">Your advert can contain up to 20 photos. The first
                     image will be the main.</x-text>
                 <div class="sec-box img-up">
-                    <div class="image-uploader">
-                        <x-text-input type="file" name="images[]" id="image-input" multiple />
-                        <label for="image-input"><i class="fa-solid fa-plus" style="color: rgb(11, 25, 111);"></i><br>Add
-                            photo</label>
-                        <div class="image-preview" id="image-preview"></div>
-                    </div>
+                    <x-image-uploader 
+                    type="file" name="images[]" id="image-input" multiple accept="image/*"/>
+                    {{-- <x-text-input type="file" name="images[]" id="image-input" multiple accept="image/*" /> --}}
+
                 </div>
 
                 <x-text tag="h2" size="2xl" weight="bold">Asking price</x-text>
@@ -416,94 +414,94 @@
     </main>
 
     <!-- Payment
-                                                        <div class="payment-form-container">
+                                                            <div class="payment-form-container">
 
-                                                            <div id="blur-background" class="blur-background"></div>
+                                                                <div id="blur-background" class="blur-background"></div>
 
-                                                            <div class="payment-popup" id="payment-popup">
+                                                                <div class="payment-popup" id="payment-popup">
 
-                                                                <span id="close-popup" class="close-btn"><i class="fas fa-times"></i></span>
+                                                                    <span id="close-popup" class="close-btn"><i class="fas fa-times"></i></span>
 
-                                                                <h2 class="font-bold">Review Payment</h2>
-                                                                <div>
-                                                                    <div class="font-medium flex justify-between py-1 px-8">
-                                                                        <label for="amount">Amount</label>
-                                                                        <span>Rs. 8000/=</span>
+                                                                    <h2 class="font-bold">Review Payment</h2>
+                                                                    <div>
+                                                                        <div class="font-medium flex justify-between py-1 px-8">
+                                                                            <label for="amount">Amount</label>
+                                                                            <span>Rs. 8000/=</span>
+                                                                        </div>
+                                                                        <div class="font-medium flex justify-between py-1 px-8">
+                                                                            <label for="amount">Boosted Ad</label>
+                                                                            <span>Rs. 900/=</span>
+                                                                        </div>
+                                                                        <div class="font-medium flex justify-between py-1 px-8 bg-slate-300 rounded-full">
+                                                                            <label for="amount">Total</label>
+                                                                            <span>Rs. 8900/=</span>
+                                                                        </div>
                                                                     </div>
-                                                                    <div class="font-medium flex justify-between py-1 px-8">
-                                                                        <label for="amount">Boosted Ad</label>
-                                                                        <span>Rs. 900/=</span>
+
+                                                                    <h2 class="font-bold">Payment Method</h2>
+                                                                    <div class="payment-options">
+                                                                        <input type="radio" name="payment" id="credit-card" checked>
+                                                                        <label for="credit-card">Credit Card</label>
+                                                                        <input type="radio" name="payment" id="debit-card">
+                                                                        <label for="debit-card">Debit Card</label>
+                                                                        <input type="radio" name="payment" id="paypal">
+                                                                        <label for="paypal">PayPal</label>
                                                                     </div>
-                                                                    <div class="font-medium flex justify-between py-1 px-8 bg-slate-300 rounded-full">
-                                                                        <label for="amount">Total</label>
-                                                                        <span>Rs. 8900/=</span>
+
+                                                                    <div class="payment-form" id="credit-card-form">
+                                                                        <h3>Credit Card</h3>
+                                                                        <form>
+                                                                            <div class="input-group">
+                                                                                <label for="cc-name">Card Holder Name</label>
+                                                                                <input type="text" id="cc-name" placeholder="John Doe">
+                                                                            </div>
+                                                                            <div class="input-group">
+                                                                                <label for="cc-number">Card Number</label>
+                                                                                <input type="text" id="cc-number" placeholder="4123 4567 8910 1234">
+                                                                            </div>
+                                                                            <div class="input-group">
+                                                                                <label for="cc-expiry">Expiry Date</label>
+                                                                                <input type="text" id="cc-expiry" placeholder="MM/YY">
+                                                                            </div>
+                                                                            <div class="input-group">
+                                                                                <label for="cc-cvv">CVV Code</label>
+                                                                                <input type="text" id="cc-cvv" placeholder="123">
+                                                                            </div>
+                                                                            <button type="submit">Submit</button>
+                                                                        </form>
+                                                                    </div>
+
+                                                                    <div class="payment-form" id="debit-card-form">
+                                                                        <h3>Debit Card</h3>
+                                                                        <form>
+                                                                            <div class="input-group">
+                                                                                <label for="dc-name">Card Holder Name</label>
+                                                                                <input type="text" id="dc-name" placeholder="John Doe">
+                                                                            </div>
+                                                                            <div class="input-group">
+                                                                                <label for="dc-number">Card Number</label>
+                                                                                <input type="text" id="dc-number" placeholder="4123 4567 8910 1234">
+                                                                            </div>
+                                                                            <div class="input-group">
+                                                                                <label for="dc-expiry">Expiry Date</label>
+                                                                                <input type="text" id="dc-expiry" placeholder="MM/YY">
+                                                                            </div>
+                                                                            <div class="input-group">
+                                                                                <label for="dc-cvv">CVV Code</label>
+                                                                                <input type="text" id="dc-cvv" placeholder="123">
+                                                                            </div>
+                                                                            <button type="submit">Submit</button>
+                                                                        </form>
+                                                                    </div>
+
+                                                                    <div class="payment-form" id="paypal-form">
+                                                                        <h3>PayPal</h3>
+                                                                        <form>
+                                                                            <button type="submit">Continue to PayPal</button>
+                                                                        </form>
                                                                     </div>
                                                                 </div>
-
-                                                                <h2 class="font-bold">Payment Method</h2>
-                                                                <div class="payment-options">
-                                                                    <input type="radio" name="payment" id="credit-card" checked>
-                                                                    <label for="credit-card">Credit Card</label>
-                                                                    <input type="radio" name="payment" id="debit-card">
-                                                                    <label for="debit-card">Debit Card</label>
-                                                                    <input type="radio" name="payment" id="paypal">
-                                                                    <label for="paypal">PayPal</label>
-                                                                </div>
-
-                                                                <div class="payment-form" id="credit-card-form">
-                                                                    <h3>Credit Card</h3>
-                                                                    <form>
-                                                                        <div class="input-group">
-                                                                            <label for="cc-name">Card Holder Name</label>
-                                                                            <input type="text" id="cc-name" placeholder="John Doe">
-                                                                        </div>
-                                                                        <div class="input-group">
-                                                                            <label for="cc-number">Card Number</label>
-                                                                            <input type="text" id="cc-number" placeholder="4123 4567 8910 1234">
-                                                                        </div>
-                                                                        <div class="input-group">
-                                                                            <label for="cc-expiry">Expiry Date</label>
-                                                                            <input type="text" id="cc-expiry" placeholder="MM/YY">
-                                                                        </div>
-                                                                        <div class="input-group">
-                                                                            <label for="cc-cvv">CVV Code</label>
-                                                                            <input type="text" id="cc-cvv" placeholder="123">
-                                                                        </div>
-                                                                        <button type="submit">Submit</button>
-                                                                    </form>
-                                                                </div>
-
-                                                                <div class="payment-form" id="debit-card-form">
-                                                                    <h3>Debit Card</h3>
-                                                                    <form>
-                                                                        <div class="input-group">
-                                                                            <label for="dc-name">Card Holder Name</label>
-                                                                            <input type="text" id="dc-name" placeholder="John Doe">
-                                                                        </div>
-                                                                        <div class="input-group">
-                                                                            <label for="dc-number">Card Number</label>
-                                                                            <input type="text" id="dc-number" placeholder="4123 4567 8910 1234">
-                                                                        </div>
-                                                                        <div class="input-group">
-                                                                            <label for="dc-expiry">Expiry Date</label>
-                                                                            <input type="text" id="dc-expiry" placeholder="MM/YY">
-                                                                        </div>
-                                                                        <div class="input-group">
-                                                                            <label for="dc-cvv">CVV Code</label>
-                                                                            <input type="text" id="dc-cvv" placeholder="123">
-                                                                        </div>
-                                                                        <button type="submit">Submit</button>
-                                                                    </form>
-                                                                </div>
-
-                                                                <div class="payment-form" id="paypal-form">
-                                                                    <h3>PayPal</h3>
-                                                                    <form>
-                                                                        <button type="submit">Continue to PayPal</button>
-                                                                    </form>
-                                                                </div>
-                                                            </div>
-                                                        </div> -->
+                                                            </div> -->
     <!-- progress bar -->
     <script type="text/javascript">
         // document.addEventListener('DOMContentLoaded', function() {
@@ -685,133 +683,6 @@
             const progressPercentage = (formStepIndex) / (progressSteps.length - 1) * 100;
             progressLine.style.width = `${progressPercentage}%`;
         }
-
-        // image uploader
-        document.getElementById('image-input').addEventListener('change', function() {
-            const imagePreview = document.getElementById('image-preview');
-            const files = Array.from(this.files);
-
-            files.forEach(file => {
-                // Check file size
-                if (file.size > 2 * 1024 * 1024) {
-                    alert('Each image must be less than 2MB');
-                    return;
-                }
-
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const img = document.createElement('img');
-                    img.src = e.target.result;
-
-                    const imageContainer = document.createElement('div');
-                    imageContainer.classList.add('image-container');
-
-                    const removeBtn = document.createElement('button');
-                    removeBtn.innerText = 'X';
-                    removeBtn.classList.add('remove-btn');
-                    removeBtn.addEventListener('click', function() {
-                        imageContainer.remove();
-                    });
-
-                    imageContainer.appendChild(img);
-                    imageContainer.appendChild(removeBtn);
-                    imagePreview.appendChild(imageContainer);
-                };
-
-                reader.readAsDataURL(file);
-            });
-        });
-
-        // Allow image reordering
-        const imagePreview = document.getElementById('image-preview');
-        let dragSrcEl = null;
-
-        function handleDragStart(e) {
-            dragSrcEl = this;
-            e.dataTransfer.effectAllowed = 'move';
-            e.dataTransfer.setData('text/html', this.innerHTML);
-        }
-
-        function handleDragOver(e) {
-            if (e.preventDefault) {
-                e.preventDefault();
-            }
-            e.dataTransfer.dropEffect = 'move';
-            return false;
-        }
-
-        function handleDragEnter() {
-            this.classList.add('over');
-        }
-
-        function handleDragLeave() {
-            this.classList.remove('over');
-        }
-
-        function handleDrop(e) {
-            if (e.stopPropagation) {
-                e.stopPropagation();
-            }
-
-            if (dragSrcEl !== this) {
-                dragSrcEl.innerHTML = this.innerHTML;
-                this.innerHTML = e.dataTransfer.getData('text/html');
-            }
-
-            return false;
-        }
-
-        function handleDragEnd() {
-            const imageContainers = document.querySelectorAll('.image-preview .image-container');
-            imageContainers.forEach(container => {
-                container.classList.remove('over');
-            });
-        }
-
-        function addDnDHandlers(container) {
-            container.addEventListener('dragstart', handleDragStart, false);
-            container.addEventListener('dragenter', handleDragEnter, false);
-            container.addEventListener('dragover', handleDragOver, false);
-            container.addEventListener('dragleave', handleDragLeave, false);
-            container.addEventListener('drop', handleDrop, false);
-            container.addEventListener('dragend', handleDragEnd, false);
-        }
-
-        // imagePreview.addEventListener('DOMNodeInserted', function(e) {
-        //     if (e.target.className === 'image-container') {
-        //         e.target.setAttribute('draggable', 'true');
-        //         addDnDHandlers(e.target);
-        //     }
-        // });
-
-        document.addEventListener('DOMContentLoaded', (event) => {
-            // Callback function to execute when mutations are observed
-            const callback = function(mutationsList, observer) {
-                for (let mutation of mutationsList) {
-                    if (mutation.type === 'childList') {
-                        console.log('A child node has been added or removed.');
-                        // Your existing code here
-                    }
-                }
-            };
-
-            // Create an observer instance linked to the callback function
-            const observer = new MutationObserver(callback);
-
-            // Options for the observer (which mutations to observe)
-            const config = {
-                childList: true,
-                subtree: true
-            };
-
-            // Target element to observe
-            const imagePreview = document.getElementById('imagePreview');
-
-            // Start observing the target element for configured mutations
-            if (imagePreview) {
-                observer.observe(imagePreview, config);
-            }
-        });
 
         // handle button selection for body type, gearbox, and fuel type
         document.addEventListener('DOMContentLoaded', (event) => {

@@ -69,5 +69,5 @@
 }
 
 .sub-listing-img {
-    @apply h-[100%] w-[50%] bg-center bg-cover bg-no-repeat mr-1;
+    @apply h-[100%] w-full bg-center bg-cover bg-no-repeat mr-1;
 }
