@@ -70,7 +70,7 @@ class ListingController extends Controller
         $listing->expiration_date = null;
         $listing->save();
 
-        return redirect()->route('listings.index')->with('success', 'Advert created successfully.');
+        return redirect()->route('pricing')->with('success', 'Advert created successfully.');
     }
 
     /**

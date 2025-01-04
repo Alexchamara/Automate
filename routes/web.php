@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ListingController;
@@ -40,5 +41,16 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('/advert/{listing}', [ListingController::class, 'destroy'])->name('advert.destroy');
     Route::post('/listings/{listing}/favorite', [ListingController::class, 'toggleFavorite'])->name('listings.favorite');
 });
+
+
+// Route::get('/pricing', function () {
+//     return view('pricing');
+// })->middleware(['auth', 'verified'])->name('pricing');
+
+Route::get('/checkout/{plan?}', CheckoutController::class)
+->middleware(['auth', 'verified'])->name('checkout');
+
+Route::view('/payment/success', 'pages.payment-success')->name('payment.success');
+Route::view('/pricing', 'pricing')->name('pricing');
 
 require __DIR__.'/auth.php';
