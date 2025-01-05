@@ -22,7 +22,7 @@
                     Pay a one-time fee to list your ad on the top of the search results. (1 month)
                 <p>
 
-                <a href="{{ route('checkout', ['plan' => 'price_1QdYlXFJ6WA2VB9ngMGUEGVi']) }}"
+                <a href="{{ route('checkout', ['plan' => 'price_1QdYlXFJ6WA2VB9ngMGUEGVi', 'listing_id' => $listing->id]) }}"
                     class="mt-5 py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-indigo-100 text-indigo-800 hover:bg-indigo-200 disabled:opacity-50 disabled:pointer-events-none dark:hover:bg-indigo-900 dark:text-indigo-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
                     Continue with Listing Fee
                 </a>
@@ -44,7 +44,7 @@
                     Bump up your ad daily and stay on top of the search results. (3 months)
                 </p>
 
-                <a href="{{ route('checkout', ['plan' => 'price_1QdYo8FJ6WA2VB9nGPfkfu45']) }}"
+                <a href="{{ route('checkout', ['plan' => 'price_1QdYo8FJ6WA2VB9nGPfkfu45', 'listing_id' => $listing->id]) }}"
                     class="mt-5 py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-indigo-600 text-white hover:bg-indigo-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
                     Continue with Daily Bump Up
                 </a>
@@ -62,7 +62,7 @@
                     Highlight your ad and make it stand out. (1 week)
                 </p>
 
-                <a href="{{ route('checkout', ['plan' => 'price_1QdYo8FJ6WA2VB9nXBRlfhk9']) }}"
+                <a href="{{ route('checkout', ['plan' => 'price_1QdYo8FJ6WA2VB9nXBRlfhk9', 'listing_id' => $listing->id]) }}"
                     class="mt-5 py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-indigo-100 text-indigo-800 hover:bg-indigo-200 disabled:opacity-50 disabled:pointer-events-none dark:hover:bg-indigo-900 dark:text-indigo-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
                     Continue with Urgent
                 </a>

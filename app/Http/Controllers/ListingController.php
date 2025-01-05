@@ -66,11 +66,14 @@ class ListingController extends Controller
         $listing->advert_id = $advert->id;
         $listing->status;
         $listing->status_updated_at;
-        $listing->isActive;
+        $listing->isActive = false;
+        $listing->payment_status = 'unpaid';
+        $listing->payment_status_updated_at = null;
         $listing->expiration_date = null;
         $listing->save();
 
-        return redirect()->route('pricing')->with('success', 'Advert created successfully.');
+        return view('pricing', ['listing' => $listing])
+            ->with('success', 'Advert created successfully.');
     }
 
     /**
@@ -170,8 +173,8 @@ class ListingController extends Controller
      */
     public function show(Listing $listing)
     {
-        // Check if listing is approved and active
-        if ($listing->status !== 'approved' || !$listing->isActive) {
+        // Check if listing is approved, active and paid
+        if ($listing->status !== 'approved' || !$listing->isActive || !$listing->payment_status) {
             abort(404);
         }
 

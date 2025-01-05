@@ -16,7 +16,9 @@ class Listing extends Model
         'advert_id',
         'status',
         'status_updated_at',
-        'isActive'
+        'isActive',
+        'payment_status',
+        'payment_status_updated_at',
     ];
 
     protected $casts = [
