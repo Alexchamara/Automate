@@ -32,17 +32,13 @@
             <div class="user-dashboard-wrapper">
                 <!-- Navbar for mobile -->
                 <!-- <div class="bg-customBlue text-white p-4 flex justify-between items-center lg:hidden ">
-                                                                                                                                                                                                                            <div class="text-lg font-bold">Dashboard</div>
-                                                                                                                                                                                                                            <button id="menuToggle" class="text-white focus:outline-none">
-                                                                                                                                                                                                                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                                                                                                                                                                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-                                                                                                                                                                                                                                </svg>
-                                                                                                                                                                                                                            </button>
-                                                                                                                                                                                                                        </div> -->
-
-
-
-
+                                                                                                                                                                                                                                <div class="text-lg font-bold">Dashboard</div>
+                                                                                                                                                                                                                                <button id="menuToggle" class="text-white focus:outline-none">
+                                                                                                                                                                                                                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                                                                                                                                                                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                                                                                                                                                                                                                                    </svg>
+                                                                                                                                                                                                                                </button>
+                                                                                                                                                                                                                            </div> -->
                 <!-- Sidebar for desktop -->
                 <div id="sidebar" class="dashboard-sidebar-desktop-wrapper">
                     <ul class="dashboard-sidebar-options flex flex-col text-secondaryText">
@@ -80,13 +76,13 @@
                             <x-text tag="label" class="dashboard-sidebar-sub-title" color="gray-600"
                                 darkColor="gray-400">Manage all admins</x-text>
                         </li>
-                        <li class="u-sidebar-value" data-page="category" onclick="loadPage('category')">
+                        <li class="u-sidebar-value" data-page="subscriptions" onclick="loadPage('subscriptions')">
                             <i class="fa-solid fa-list ud-icon-left dark:text-white"></i>
                             <i class=" fa-solid fa-arrow-right-long dark:text-white"></i>
                             <x-text tag="label" class="dashboard-sidebar-title" color="black"
-                                darkColor="gray-100">Categories</x-text><br>
+                                darkColor="gray-100">Subscriptions</x-text><br>
                             <x-text tag="label" class="dashboard-sidebar-sub-title" color="gray-600"
-                                darkColor="gray-400">Manage all categories</x-text>
+                                darkColor="gray-400">Manage all subscriptions</x-text>
                         </li>
                         <li class="u-sidebar-value" data-page="exhibitions" onclick="loadPage('exhibitions')">
                             <i class="fa-solid fa-shop ud-icon-left dark:text-white"></i>
@@ -226,7 +222,7 @@
                     </div>
 
                     <!-- listings page -->
-                    <div id="listings" class="ud-page-wrapper ">
+                    <div id="listings" class="ud-page-wrapper hidden">
 
                         @livewire('dashboard.advert-card')
 
@@ -244,6 +240,20 @@
 
                         {{-- create a new admin --}}
                         @livewire('admin.admin-create')
+
+                    </div>
+
+                    <!-- exhibitions -->
+                    <div id="subscriptions" class="ud-page-wrapper ">
+
+                        {{-- @livewire('admin.subscription-form')
+                        
+                        @if ($defaultPlan)
+                            @livewire('admin.subscription-add', ['planId' => $defaultPlan->id])
+                        @else
+                            <div class="text-red-500">No plans available</div>
+                        @endif  --}}
+                        @livewire('admin-dashboard.subscription-tab')
 
                     </div>
 

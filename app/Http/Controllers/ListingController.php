@@ -174,7 +174,7 @@ class ListingController extends Controller
     public function show(Listing $listing)
     {
         // Check if listing is approved, active and paid
-        if ($listing->status !== 'approved' || !$listing->isActive || !$listing->payment_status) {
+        if ($listing->status !== 'approved' || !$listing->isActive || !$listing->payment_status === 'unpaid') {
             abort(404);
         }
 
