@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use Illuminate\Support\Facades\Log;
 use Illuminate\View\View;
 
 class RegisteredUserController extends Controller
@@ -28,11 +29,11 @@ class RegisteredUserController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request)
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
@@ -46,6 +47,25 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect(route('dashboard', absolute: false));
+        // Create token for API
+        $token = $user->createToken($request->email);
+
+        if ($request->expectsJson()) {
+            return response()->json([
+                'status' => true,
+                'message' => 'User registered successfully',
+                'token' => $token->plainTextToken,
+                'user' => $user
+            ], 201);
+        }
+
+        return redirect()->route('dashboard')->with([
+            'status' => true,
+            'message' => 'User registered successfully',
+            'token' => $token->plainTextToken,
+            'user' => $user
+        ]);
+
+        // return redirect(route('dashboard', absolute: false));
     }
 }

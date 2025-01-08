@@ -8,6 +8,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use Illuminate\Http\JsonResponse;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -23,26 +24,84 @@ class AuthenticatedSessionController extends Controller
     /**
      * Handle an incoming authentication request.
      */
-    public function store(LoginRequest $request): RedirectResponse
+    // public function store(LoginRequest $request): RedirectResponse
+    // {
+    //     $request->authenticate();
+
+    //     $request->session()->regenerate();
+
+    //     return redirect()->intended(route('dashboard', absolute: false));
+    // }
+
+    public function store(LoginRequest $request)
     {
+        // Authenticate user
         $request->authenticate();
 
-        $request->session()->regenerate();
+        // Get authenticated user
+        $user = Auth::user();
 
-        return redirect()->intended(route('dashboard', absolute: false));
+        // Create token with user email as name
+        $token = $user->createToken($user->email);
+
+        // Store token in session if session is available
+        if ($request->hasSession()) {
+            $request->session()->put('auth_token', $token->plainTextToken);
+            $request->session()->regenerate();
+        }
+
+        // Check if JSON response is requested
+        if ($request->wantsJson()) {
+            return response()->json([
+                'status' => true,
+                'message' => 'Successfully logged in',
+                'user' => $user,
+                'token' => $token->plainTextToken,
+                'token_type' => 'Bearer'
+            ] , 201);
+        }
+
+        // Redirect with success message
+        return redirect()->route('dashboard')->with([
+            'status' => true,
+            'message' => 'Successfully logged in',
+            'user' => $user,
+            'token' => $token->plainTextToken,
+            'token_type' => 'Bearer'
+        ]);
     }
 
     /**
      * Destroy an authenticated session.
      */
-    public function destroy(Request $request): RedirectResponse
+    public function destroy(Request $request): JsonResponse|RedirectResponse
     {
+        // Delete all tokens for current user
+        Auth::user()->tokens()->delete();
+
+        if ($request->hasSession()) {
+            // Clear the session token
+            $request->session()->forget('auth_token');
+            
+            // Invalidate session
+            $request->session()->invalidate();
+            
+            // Regenerate CSRF token
+            $request->session()->regenerateToken();
+        }
+        
+        // Logout user
         Auth::guard('web')->logout();
 
-        $request->session()->invalidate();
+        $response = [
+            'status' => true,
+            'message' => 'Logged out successfully'
+        ];
 
-        $request->session()->regenerateToken();
+        if ($request->expectsJson()) {
+            return new JsonResponse($response, 200);
+        }
 
-        return redirect('/');
+        return redirect('/')->with('status', 'Logged out successfully');
     }
 }
