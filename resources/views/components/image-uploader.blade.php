@@ -1,7 +1,7 @@
 <div class="image-uploader">
     <x-text-input :type="$type" :name="$name" :id="$id" :multiple="$multiple" :accept="$accept" />
-    <label for="image-input">
-        <i class="fa-solid fa-plus" style="color: rgb(11, 25, 111);"></i><br>
+    <label for="image-input" class="dark:text-white">
+        <i class="fa-solid fa-plus" class="dark:text-white text-customBlue"></i><br>
         Add <span id="remaining-count">20</span> photos 
     </label>
     <div class="image-preview" id="image-preview"></div>

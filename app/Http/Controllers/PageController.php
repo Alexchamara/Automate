@@ -6,8 +6,6 @@ use App\Models\Listing;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Plans;
-use App\Models\PlanItem;
 
 class PageController extends Controller
 {
@@ -54,8 +52,6 @@ class PageController extends Controller
                 ->with(['listing.advert'])
                 ->latest()
                 ->get();
-            $plans = Plans::all();
-            $plan_items = PlanItem::all();
 
             switch ($role) {
                 case 'user':
@@ -72,9 +68,6 @@ class PageController extends Controller
                     }
                 case 'admin':
                     $totalUsers = User::where('role', '!=', 'admin')->count();
-                    $defaultPlan = Plans::first();
-                    // $defaultPlanItems = PlanItem::where('plan_id', $defaultPlan->id)->get();
-                    // $user = User::where('role', '!=', 'admin')->first();
                     return view(
                         'admin.dashboard',
                         compact(
@@ -82,9 +75,6 @@ class PageController extends Controller
                             'user',
                             'users',
                             'listings',
-                            'plans',
-                            'plan_items',
-                            'defaultPlan',
                         )
                     );
                 default:

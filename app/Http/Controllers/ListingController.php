@@ -72,6 +72,14 @@ class ListingController extends Controller
         $listing->expiration_date = null;
         $listing->save();
 
+        if ($request->wantsJson()) {
+            return response()->json([
+                'status' => true,
+                'message' => 'Advert created successfully',
+                'data' => $listing
+            ], 201);
+        }
+
         return view('pricing', ['listing' => $listing])
             ->with('success', 'Advert created successfully.');
     }
@@ -133,6 +141,14 @@ class ListingController extends Controller
             'status_updated_at' => now()
         ]);
 
+        if ($request->wantsJson()) {
+            return response()->json([
+                'status' => true,
+                'message' => 'Advert update successfully',
+                'data' => $listing->advert
+            ], 201);
+        }
+
         return redirect()->route('dashboard')
             ->with('message', 'Advert updated successfully!')
             ->with('redirect_section', 'myAdverts');
@@ -141,7 +157,7 @@ class ListingController extends Controller
     /**
      * Remove the specified advert from storage.
      */
-    public function destroy(Listing $listing)
+    public function destroy(Request $request, Listing $listing)
     {
         // Check if user owns the listing
         if (Auth::id() !== $listing->user_id) {
@@ -162,6 +178,13 @@ class ListingController extends Controller
 
         // Delete the listing
         $listing->delete();
+
+        if ($request->wantsJson()) {
+            return response()->json([
+                'status' => true,
+                'message' => 'Advert delete successfully',
+            ], 201);
+        }
 
         return redirect()->route('dashboard')
             ->with('message', 'Advert deleted successfully!')

@@ -309,8 +309,7 @@
                 <x-text tag="span" size="base" color="black">Your advert can contain up to 20 photos. The first
                     image will be the main.</x-text>
                 <div class="sec-box img-up">
-                    <x-image-uploader 
-                    type="file" name="images[]" id="image-input" multiple accept="image/*"/>
+                    <x-image-uploader type="file" name="images[]" id="image-input" multiple accept="image/*" />
                     {{-- <x-text-input type="file" name="images[]" id="image-input" multiple accept="image/*" /> --}}
 
                 </div>
@@ -330,7 +329,8 @@
                 <x-text tag="h2" size="2xl" weight="bold">Advert description</x-text>
                 <div class="advert-desceript">
                     <x-text tag="label" for="description" class="required">Advert description</x-text><br>
-                    <textarea id="description" name="description" placeholder="Describe your car in detail..." rows="15"></textarea>
+                    <x-textarea id="description" name="description" placeholder="Describe your car in detail..."
+                        rows="15" />
                 </div>
 
                 <x-text tag="h2" size="2xl" weight="bold">Contact details</x-text>

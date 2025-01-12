@@ -76,14 +76,6 @@
                             <x-text tag="label" class="dashboard-sidebar-sub-title" color="gray-600"
                                 darkColor="gray-400">Manage all admins</x-text>
                         </li>
-                        <li class="u-sidebar-value" data-page="subscriptions" onclick="loadPage('subscriptions')">
-                            <i class="fa-solid fa-list ud-icon-left dark:text-white"></i>
-                            <i class=" fa-solid fa-arrow-right-long dark:text-white"></i>
-                            <x-text tag="label" class="dashboard-sidebar-title" color="black"
-                                darkColor="gray-100">Subscriptions</x-text><br>
-                            <x-text tag="label" class="dashboard-sidebar-sub-title" color="gray-600"
-                                darkColor="gray-400">Manage all subscriptions</x-text>
-                        </li>
                         <li class="u-sidebar-value" data-page="exhibitions" onclick="loadPage('exhibitions')">
                             <i class="fa-solid fa-shop ud-icon-left dark:text-white"></i>
                             <i class="fa-solid fa-arrow-right-long dark:text-white"></i>
@@ -114,7 +106,7 @@
                 <!-- Main Content -->
                 <div class="u-dashboard-content-wrapper">
                     <!-- Dashboard page -->
-                    <div id="dashboard" class="ud-page-wrapper hidden">
+                    <div id="dashboard" class="ud-page-wrapper">
                         <div class="ud-dashboard-page bg-white dark:bg-gray-800 p-6 rounded shadow">
                             <div class="pl-2 ml-3">
                                 <x-text tag="h2" size="2xl" weight="bold" color="customBlue"
@@ -240,20 +232,6 @@
 
                         {{-- create a new admin --}}
                         @livewire('admin.admin-create')
-
-                    </div>
-
-                    <!-- exhibitions -->
-                    <div id="subscriptions" class="ud-page-wrapper ">
-
-                        {{-- @livewire('admin.subscription-form')
-                        
-                        @if ($defaultPlan)
-                            @livewire('admin.subscription-add', ['planId' => $defaultPlan->id])
-                        @else
-                            <div class="text-red-500">No plans available</div>
-                        @endif  --}}
-                        @livewire('admin-dashboard.subscription-tab')
 
                     </div>
 
