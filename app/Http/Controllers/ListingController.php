@@ -77,7 +77,7 @@ class ListingController extends Controller
                 'status' => true,
                 'message' => 'Advert created successfully',
                 'data' => $listing
-            ], 201);
+            ], 200);
         }
 
         return view('pricing', ['listing' => $listing])
@@ -230,4 +230,6 @@ class ListingController extends Controller
 
         return response()->json(['status' => 'added']);
     }
+
+   
 }

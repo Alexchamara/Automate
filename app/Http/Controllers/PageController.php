@@ -68,6 +68,9 @@ class PageController extends Controller
                     }
                 case 'admin':
                     $totalUsers = User::where('role', '!=', 'admin')->count();
+                    $activeAdverts = Listing::where('status', 'approved')->count();
+                    $pendingAdverts = Listing::where('status', 'pendding')->count();
+                    $totalListings = Listing::all()->count();
                     return view(
                         'admin.dashboard',
                         compact(
@@ -75,6 +78,9 @@ class PageController extends Controller
                             'user',
                             'users',
                             'listings',
+                            'activeAdverts',
+                            'pendingAdverts',
+                            'totalListings',
                         )
                     );
                 default:

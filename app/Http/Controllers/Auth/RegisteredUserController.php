@@ -56,7 +56,7 @@ class RegisteredUserController extends Controller
                 'message' => 'User registered successfully',
                 'token' => $token->plainTextToken,
                 'user' => $user
-            ], 201);
+            ], 200);
         }
 
         return redirect()->route('dashboard')->with([

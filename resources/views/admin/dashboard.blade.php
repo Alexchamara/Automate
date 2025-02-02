@@ -76,14 +76,6 @@
                             <x-text tag="label" class="dashboard-sidebar-sub-title" color="gray-600"
                                 darkColor="gray-400">Manage all admins</x-text>
                         </li>
-                        <li class="u-sidebar-value" data-page="exhibitions" onclick="loadPage('exhibitions')">
-                            <i class="fa-solid fa-shop ud-icon-left dark:text-white"></i>
-                            <i class="fa-solid fa-arrow-right-long dark:text-white"></i>
-                            <x-text tag="label" class="dashboard-sidebar-title" color="black"
-                                darkColor="gray-100">Exhibitions</x-text><br>
-                            <x-text tag="label" class="dashboard-sidebar-sub-title" color="gray-600"
-                                darkColor="gray-400">Manage all exhibitions</x-text>
-                        </li>
                         <li class="u-sidebar-value" data-page="personalDetails" onclick="loadPage('personalDetails')">
                             <i class="fa-regular fa-user ud-icon-left dark:text-white"></i>
                             <i class="fa-solid fa-arrow-right-long dark:text-white"></i>
@@ -143,11 +135,14 @@
                                         <div class="absolute top-2 left-2">
                                             <x-text tag="h3" size="lg" weight="semibold" color="customBlue"
                                                 darkColor="gray-200" class="summery-title">
-                                                Total Adverts
+                                                Active Adverts
                                             </x-text>
                                         </div>
                                         <div class="flex justify-center items-center h-full">
-                                            <p class="summary-amount"></p>
+                                            <x-text tag="h3" size="lg" weight="semibold" color="customBlue"
+                                                darkColor="gray-200" class="summary-amount">
+                                                {{ $activeAdverts}}
+                                            </x-text>
                                         </div>
                                         <div class="summery-icon">
                                             <i class="fa-solid fa-signal"></i>
@@ -165,6 +160,7 @@
                                         <div class="flex justify-center items-center h-full">
                                             <x-text tag="h3" size="lg" weight="semibold" color="customBlue"
                                                 darkColor="gray-200" class="summary-amount">
+                                                {{ $pendingAdverts}}
                                             </x-text>
                                         </div>
                                         <div class="summery-icon">
@@ -183,6 +179,7 @@
                                         <div class="flex justify-center items-center h-full">
                                             <x-text tag="h3" size="lg" weight="semibold" color="customBlue"
                                                 darkColor="gray-200" class="summary-amount">
+                                                {{ $totalListings }}
                                             </x-text>
                                         </div>
                                         <div class="summery-icon">
@@ -233,21 +230,6 @@
                         {{-- create a new admin --}}
                         @livewire('admin.admin-create')
 
-                    </div>
-
-                    <!-- exhibitions -->
-                    <div id="exhibitions" class="ud-page-wrapper hidden">
-                        <x-search-bar :text="'Status'" :options="[
-                            'all' => 'All',
-                            'live' => 'Live',
-                            'pending' => 'Pending',
-                            'rejected' => 'Rejected',
-                            'expired' => 'Expired',
-                        ]" :keyword="request('keyword', '')" :placeholder="'Search exhibitions...'" />
-
-                        <div>
-
-                        </div>
                     </div>
 
                     <!-- My presonal details -->

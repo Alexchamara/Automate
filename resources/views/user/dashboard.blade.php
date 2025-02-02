@@ -150,7 +150,7 @@
                             </x-text>
                         </div>
                         <x-primary-button onclick="loadPage('personalDetails')">
-                            <a href="#">Browse latest car</a>
+                            <a href="{{ route('pages.shop') }}">Browse latest car</a>
                         </x-primary-button>
                     </div>
                     <div class="ud-dashboard-page bg-white dark:bg-gray-800 p-6 rounded shadow">

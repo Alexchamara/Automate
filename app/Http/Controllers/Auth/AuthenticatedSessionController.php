@@ -50,7 +50,7 @@ class AuthenticatedSessionController extends Controller
             $request->session()->regenerate();
         }
 
-        // Check if JSON response is requested
+        // Always check for JSON before redirecting
         if ($request->wantsJson()) {
             return response()->json([
                 'status' => true,
@@ -58,17 +58,10 @@ class AuthenticatedSessionController extends Controller
                 'user' => $user,
                 'token' => $token->plainTextToken,
                 'token_type' => 'Bearer'
-            ] , 201);
+            ], 200);
         }
 
-        // Redirect with success message
-        return redirect()->route('dashboard')->with([
-            'status' => true,
-            'message' => 'Successfully logged in',
-            'user' => $user,
-            'token' => $token->plainTextToken,
-            'token_type' => 'Bearer'
-        ]);
+        return redirect()->route('dashboard');
     }
 
     /**
@@ -82,14 +75,14 @@ class AuthenticatedSessionController extends Controller
         if ($request->hasSession()) {
             // Clear the session token
             $request->session()->forget('auth_token');
-            
+
             // Invalidate session
             $request->session()->invalidate();
-            
+
             // Regenerate CSRF token
             $request->session()->regenerateToken();
         }
-        
+
         // Logout user
         Auth::guard('web')->logout();
 
