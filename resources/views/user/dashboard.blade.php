@@ -56,22 +56,22 @@
                         <x-text tag="label" class="dashboard-sidebar-sub-title" color="gray-600"
                             darkColor="gray-400">Vehicles you are selling</x-text>
                     </li>
-                    <li class="u-sidebar-value" data-page="myMessages" onclick="loadPage('myMessages')">
+                    {{-- <li class="u-sidebar-value" data-page="myMessages" onclick="loadPage('myMessages')">
                         <i class="fa-regular fa-envelope ud-icon-left dark:text-white"></i>
                         <i class="fa-solid fa-arrow-right-long dark:text-white"></i>
                         <x-text tag="label" class="dashboard-sidebar-title" color="black" darkColor="gray-100">My
                             messages</x-text><br>
                         <x-text tag="label" class="dashboard-sidebar-sub-title" color="gray-600"
                             darkColor="gray-400">Send and receive messages</x-text>
-                    </li>
-                    <li class="u-sidebar-value" data-page="notifications" onclick="loadPage('notification')">
+                    </li> --}}
+                    {{-- <li class="u-sidebar-value" data-page="notifications" onclick="loadPage('notification')">
                         <i class="fa-regular fa-bell ud-icon-left dark:text-white"></i>
                         <i class="fa-solid fa-arrow-right-long dark:text-white"></i>
                         <x-text tag="label" class="dashboard-sidebar-title" color="black"
                             darkColor="gray-100">Notification</x-text><br>
                         <x-text tag="label" class="dashboard-sidebar-sub-title" color="gray-600"
                             darkColor="gray-400">Receive notifications</x-text>
-                    </li>
+                    </li> --}}
                     <li class="u-sidebar-value" data-page="savedAdverts" onclick="loadPage('savedAdverts')">
                         <i class="fa-regular fa-heart ud-icon-left dark:text-white"></i>
                         <i class="fa-solid fa-arrow-right-long dark:text-white"></i>
@@ -80,14 +80,14 @@
                         <x-text tag="label" class="dashboard-sidebar-sub-title" color="gray-600" darkColor="gray-400">Ads
                             you have saved for later</x-text>
                     </li>
-                    <li class="u-sidebar-value" data-page="myOrders" onclick="loadPage('myOrders')">
+                    {{-- <li class="u-sidebar-value" data-page="myOrders" onclick="loadPage('myOrders')">
                         <i class="fa-solid fa-bag-shopping ud-icon-left dark:text-white"></i>
                         <i class="fa-solid fa-arrow-right-long dark:text-white"></i>
                         <x-text tag="label" class="dashboard-sidebar-title" color="black" darkColor="gray-100">My
                             orders</x-text><br>
                         <x-text tag="label" class="dashboard-sidebar-sub-title" color="gray-600"
                             darkColor="gray-400">View all your orders</x-text>
-                    </li>
+                    </li> --}}
                     <li class="u-sidebar-value" data-page="personalDetails" onclick="loadPage('personalDetails')">
                         <i class="fa-regular fa-user ud-icon-left dark:text-white"></i>
                         <i class="fa-solid fa-arrow-right-long dark:text-white"></i>

@@ -14,10 +14,10 @@
                     <span class="step-number">2</span>
                     Your advert
                 </div>
-                <div class="step" style="border-radius: 0 10px 0 0;">
+                {{-- <div class="step" style="border-radius: 0 10px 0 0;">
                     <span class="step-number">3</span>
                     Review & publish
-                </div>
+                </div> --}}
             </div>
             <div class="progress-line">
                 <div class="progress"></div>
@@ -352,13 +352,14 @@
                 <button type="button" class="prev-btn">
                     <i class="fa-solid fa-arrow-left" style="margin-right: 10px;"></i>Back
                 </button>
-                <button type="button" class="next-btn">Next
+                {{-- <button type="button" class="next-btn">Next
                     <i class="fa-solid fa-arrow-right" style="color: #ffffff; margin-left: 10px;"></i>
-                </button>
+                </button> --}}
+                <button type="submit" class="publish-btn" id="open-popup">Publish advert</button>
             </div>
 
             <!-- Review & publish -->
-            <div class="form-step form_3">
+            {{-- <div class="form-step form_3">
                 <div class="publish-top">
                     <h2 style="font-size:3vw; font-weight: bold;">Advert summary</h2>
                     <span>Please review the details and click the 'Publish advert' button to post. To prevent potential
@@ -409,7 +410,7 @@
                         <i class="fa-solid fa-arrow-left"></i>Back</button>
                     <button type="submit" class="publish-btn" id="open-popup">Publish advert</button>
                 </div>
-            </div>
+            </div> --}}
         </form>
     </main>
 
